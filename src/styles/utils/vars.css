@@ -1,0 +1,21 @@
+:root {
+  --main-text-color: #000000;
+  --accent-text-color: #ff6b08;
+  --white-text-color: #ffffff;
+  --footer-text-color: #545454;
+  --current-page: #ff001b;
+  --my-library-current-bcg-button: #ff6b02;
+
+  --body-bcg: #e5e5e5;
+  --modal-overlay: rgba(0; 0; 0; 0.56);
+  --modal-items: #8c8c8c;
+
+  --pagination-arrow: #f7f7f7;
+  --footer-bcg: #f7f7f7;
+
+  --modal-light-gray: #f7f7f7;
+  --accent-bg-color: #ff6b01;
+
+  --cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --time: 300ms;
+}

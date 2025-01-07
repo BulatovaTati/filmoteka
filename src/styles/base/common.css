@@ -1,0 +1,32 @@
+body {
+  font-style: normal;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+
+  background-color: var(--white-text-color);
+  color: var(--main-text-color);
+
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+    line-height: calc(24 / 20);
+  }
+
+  &.modal-open,
+  &.js-modal-is-hidden {
+    overflow: hidden;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.ext-pad {
+  padding-bottom: 60px;
+}
+
+.ext-pad .cards {
+  padding-bottom: 0;
+}
