@@ -8,7 +8,7 @@ async function getPopularData(page = 1) {
     `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${page}`
   );
 
-  return data;
+  return data.results;
 }
 
 async function fetchMovieSearcher(text, page = 1) {

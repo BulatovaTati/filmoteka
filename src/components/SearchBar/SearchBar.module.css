@@ -34,8 +34,8 @@
   }
 }
 
-.input__search-btn {
-  background: transparent;
+.input__search_btn {
+  background-color: transparent;
   border: none;
   margin-left: -20px;
   margin-bottom: 12px;
@@ -46,23 +46,13 @@
     transform: scale(1.2);
     transition: transform var(--time) var(--cubic);
   }
-
-  &:hover,
-  &:focus svg {
-    stroke: var(--current-page);
-  }
-
-  &:focus-visible {
-    outline: none;
-  }
 }
 
-.input__search-icon {
-  stroke: var(--white-text-color);
+.input__search_icon {
+  fill: var(--white-text-color);
 
   &:hover,
   &:focus {
-    stroke: #ff001b;
     transform: scale(1.03);
     transition: transform var(--time) var(--cubic);
   }
