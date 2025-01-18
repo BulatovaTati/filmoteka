@@ -33,7 +33,8 @@ async function getGenres() {
   const { data } = await axios.get(
     `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`
   );
-  return data;
+
+  return data.genres;
 }
 
 async function fetchUpcomingMovies() {

@@ -4,7 +4,6 @@ import MovieItem from './MovieItem/MovieItem';
 import s from './MoviesList.module.css';
 
 const MoviesList = ({ movies }) => {
-  console.log('movies: ', movies);
   return (
     <Section>
       <Container>
