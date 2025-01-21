@@ -1,22 +1,101 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { auth } from '../../firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 
-export const refreshUserToken = createAsyncThunk(
-  'auth/refreshUserToken',
-  async (_, { rejectWithValue, getState }) => {
-    const { token } = getState().auth;
-
-    if (!token) return rejectWithValue('User not authenticated');
-
+export const register = createAsyncThunk(
+  'auth/register',
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      const user = auth.currentUser;
-      if (user) {
-        const token = await user.getIdToken(true);
-        return { token };
-      }
-      return rejectWithValue('User not authenticated');
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (!user) return rejectWithValue('User not authenticated');
+
+      const token = await user.getIdToken();
+      return { token, user };
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      if (!email || !password) {
+        return rejectWithValue('Email and password are required');
+      }
+
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (user) {
+        const token = await user.getIdToken();
+        return {
+          token,
+          user: {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+          },
+        };
+      }
+
+      return rejectWithValue('User not authenticated');
+    } catch (error) {
+      let errorMessage = null;
+
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errorMessage = 'No user found with this email';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'Incorrect password';
+          break;
+        case 'auth/too-many-requests':
+          errorMessage = 'Too many login attempts. Please try again later.';
+          break;
+        default:
+          errorMessage = error.message;
+      }
+
+      return rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
+  try {
+    await signOut(auth);
+    return { message: 'User logged out successfully' };
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+export const refreshUser = createAsyncThunk('auth/refresh', async (_, { rejectWithValue }) => {
+  try {
+    const user = auth.currentUser;
+    if (!user) return rejectWithValue('No user is currently logged in');
+
+    const token = await user.getIdToken();
+    if (!token) return rejectWithValue('Unable to get user token');
+    return {
+      uid: user.uid,
+      email: user.email,
+      token,
+    };
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
+
+const operations = {
+  register,
+  logOut,
+  logIn,
+  refreshUser,
+};
+
+export default operations;

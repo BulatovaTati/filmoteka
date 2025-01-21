@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../../firebaseAuth';
+import { logOut } from '../../../redux/auth/operations';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
 
   return (
     <>
-      <button type="submit" onClick={() => logoutUser(dispatch)}>
+      <button type="submit" onClick={() => dispatch(logOut())}>
         Log out
       </button>
     </>
