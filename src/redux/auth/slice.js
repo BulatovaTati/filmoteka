@@ -1,57 +1,66 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { refreshUserToken } from './operations';
+import { refreshUser, register, logIn, logOut } from './operations';
+import customToast from '../../components/Toast/Toast';
+
+const ERROR_TEXT = 'Oops... something went wrong, try again!';
 
 const initialState = {
-  user: null,
+  user: {},
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-  error: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    loginStart: state => {
-      state.isRefreshing = true;
-      state.error = null;
-    },
-    loginSuccess: (state, action) => {
-      state.isRefreshing = false;
-      state.isLoggedIn = true;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-    },
-    loginFailure: (state, action) => {
-      state.isRefreshing = false;
-      state.error = action.payload;
-    },
-    logout: state => {
-      state.isLoggedIn = false;
-      state.user = null;
-      state.token = null;
-    },
-  },
   extraReducers: builder => {
     builder
-      .addCase(refreshUserToken.pending, state => {
-        state.isRefreshing = true;
-        state.error = null;
-      })
-      .addCase(refreshUserToken.fulfilled, (state, action) => {
-        state.isRefreshing = false;
+      .addCase(register.fulfilled, (state, { payload }) => {
+        const { uid, email } = payload.user;
+        state.user = { uid, email };
+
+        state.token = payload.token;
         state.isLoggedIn = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        customToast('success', 'Successful registration');
       })
-      .addCase(refreshUserToken.rejected, (state, action) => {
+      .addCase(register.rejected, state => {
+        customToast('error', ERROR_TEXT);
+        return state;
+      })
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        const { uid, email } = payload.user;
+        state.user = { uid, email };
+        state.token = payload.token;
+        state.isLoggedIn = true;
+        customToast('success', 'Successful Log In');
+      })
+      .addCase(logIn.rejected, state => {
+        customToast('error', ERROR_TEXT);
+        return state;
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.user = {};
+        state.token = null;
+        state.isLoggedIn = false;
+        customToast('success', 'Successful Log Out');
+      })
+      .addCase(logOut.rejected, state => {
+        customToast('error', ERROR_TEXT);
+        return state;
+      })
+      .addCase(refreshUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
         state.isRefreshing = false;
-        state.error = action.payload || 'Failed to refresh token';
+      })
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
       });
   },
 });
-
-export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.actions;
 
 export default authSlice.reducer;
