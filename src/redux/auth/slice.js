@@ -17,16 +17,15 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
-        const { uid, email } = payload.user;
-        state.user = { uid, email };
-
+        const { uid, email, name } = payload.user;
+        state.user = { uid, email, name };
         state.token = payload.token;
         state.isLoggedIn = true;
         customToast('success', 'Successful registration');
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
-        const { uid, email } = payload.user;
-        state.user = { uid, email };
+        const { uid, email, name } = payload.user;
+        (state.user = { uid, email }), name;
         state.token = payload.token;
         state.isLoggedIn = true;
         customToast('success', 'Successful Log In');
