@@ -1,0 +1,112 @@
+.modal_login {
+  width: 320px;
+  margin: 0 auto;
+  border-radius: 15px;
+
+  padding: 40px;
+  background-color: var(--white-text-color);
+
+  @media screen and (min-width: 768px) {
+    width: 460px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 528px;
+  }
+}
+
+.modal_login__title_signIn {
+  font-weight: 700;
+  /* @include lh(30px, 20px, 20px); */
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+}
+
+.modal_login__label {
+  display: block;
+  /* @include lh(14px, 12px, 12px); */
+  letter-spacing: 0.01em;
+  color: getColor(footer-text-color);
+  margin-bottom: 4px;
+}
+
+.modal_login__input {
+  width: 240px;
+
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-left: 30px;
+  outline: none;
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  box-sizing: border-box;
+  border-radius: 4px;
+  transition: border-color var(--time) var(--cubic);
+
+  @media screen and (min-width: 768px) {
+    width: 320px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 420px;
+  }
+}
+
+.modal_login__input:hover,
+.modal_login__input:focus {
+  border-color: var(--accent-text-color);
+}
+
+.signUp_now,
+.signIn_now {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.button_modal_btn {
+  display: block;
+  margin: 0 auto;
+  width: 110px;
+  height: 44px;
+
+  transition: color var(--time) var(--cubic), background-color var(--time) var(--cubic),
+    border-color var(--time) var(--cubic);
+
+  /* @include lh(16px, 12px, 12px); */
+  text-transform: uppercase;
+  background-color: transparent;
+
+  border-color: var(--primary-text-color);
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    width: 135px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 155px;
+  }
+
+  &:hover {
+    background-color: var(--accent-text-color);
+    border-color: transparent;
+    color: var(--white-text-color);
+  }
+}
+
+.signUp_now__link {
+  color: var(--accent-text-color);
+  cursor: pointer;
+  margin-left: 10px;
+  letter-spacing: 0.03em;
+
+  transition: transform var(--time) var(--cubic);
+
+  &:focus,
+  &:hover {
+    transform: scale(1.15);
+  }
+}

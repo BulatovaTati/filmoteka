@@ -20,8 +20,7 @@ const AppBar = () => {
             <FiFilm className={s.header__icon} size={24} />
             <span className={s.logo__text}>Filmoteka</span>
           </a>
-          <Navigation />
-          {isLoggedIn ? <UserMenu /> : <AuthNav />}
+          <Navigation>{isLoggedIn ? <UserMenu /> : <AuthNav />}</Navigation>
         </div>
         <SearchBar />
       </Container>
