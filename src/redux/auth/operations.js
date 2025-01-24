@@ -4,9 +4,9 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } f
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({ name, email, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password, name);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       if (user) {
@@ -16,7 +16,6 @@ export const register = createAsyncThunk(
           user: {
             uid: user.uid,
             email: user.email,
-            displayName: user.displayName,
           },
         };
       }
@@ -40,30 +39,13 @@ export const logIn = createAsyncThunk(
           user: {
             uid: user.uid,
             email: user.email,
-            displayName: user.displayName,
           },
         };
       }
 
       return rejectWithValue('User not authenticated');
     } catch (error) {
-      let errorMessage = null;
-
-      switch (error.code) {
-        case 'auth/user-not-found':
-          errorMessage = 'No user found with this email';
-          break;
-        case 'auth/wrong-password':
-          errorMessage = 'Incorrect password';
-          break;
-        case 'auth/too-many-requests':
-          errorMessage = 'Too many login attempts. Please try again later.';
-          break;
-        default:
-          errorMessage = error.message;
-      }
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue(error.message);
     }
   }
 );
