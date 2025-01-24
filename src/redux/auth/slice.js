@@ -16,10 +16,6 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addMatcher(isAnyOf(register.rejected, logIn.pending, logOut.pending), state => {
-        customToast('error', ERROR_TEXT);
-        return state;
-      })
       .addCase(register.fulfilled, (state, { payload }) => {
         const { uid, email } = payload.user;
         state.user = { uid, email };
@@ -51,6 +47,8 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addMatcher(isAnyOf(register.rejected, logIn.rejected, logOut.rejected), state => {
         customToast('error', ERROR_TEXT);
         return state;
       });

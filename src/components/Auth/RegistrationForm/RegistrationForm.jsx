@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { register } from '../../../redux/auth/operations';
 import { validationSchemaRegistrationForm } from '../../validationsForm';
+import FormErrorMessage from '../ErrorText/ErrorText';
+import s from './RegistrationForm.module.css';
 
 const initialValues = {
   name: '',
@@ -19,31 +21,43 @@ const RegistrationForm = () => {
 
   return (
     <div>
-      <h2>Registration</h2>
+      <p className={s.modal_registration__title_signUp}>Registration</p>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchemaRegistrationForm}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
-            <div>
-              <Field type="text" name="name" placeholder="Name" />
-              <ErrorMessage name="name" component="div" className="error" />
+          <Form className={s.modal_registration}>
+            <div className={s.modal_registration__label}>
+              <Field
+                type="text"
+                name="name"
+                placeholder="Name"
+                className={s.modal_registration__input}
+              />
+              <FormErrorMessage name="name" />
             </div>
-
-            <div>
-              <Field type="email" name="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" className="error" />
+            <div className={s.modal_registration__label}>
+              <Field
+                type="email"
+                name="email"
+                placeholder="Email"
+                className={s.modal_registration__input}
+              />
+              <FormErrorMessage name="email" />
             </div>
-
-            <div>
-              <Field type="password" name="password" placeholder="Password" />
-              <ErrorMessage name="password" component="div" className="error" />
+            <div className={s.modal_registration__label}>
+              <Field
+                type="password"
+                name="password"
+                placeholder="Password"
+                className={s.modal_registration__input}
+              />
+              <FormErrorMessage name="password" />
             </div>
-
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Registering...' : 'Register'}
+            <button type="submit" disabled={isSubmitting} className={s.button_modal_btn}>
+              Register
             </button>
           </Form>
         )}

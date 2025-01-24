@@ -1,24 +1,4 @@
-.login_section {
-  padding: 40px 0;
-}
-
-.modal_login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 25px;
-  width: 100%;
-  margin: 0 auto;
-  border-radius: 15px;
-
-  background-color: var(--white-text-color);
-
-  @media screen and (min-width: 768px) {
-    width: 380px;
-  }
-}
-
-.modal_login__title_signIn {
+.modal_registration__title_signUp {
   font-weight: 700;
   /* @include lh(30px, 20px, 20px); */
   text-align: center;
@@ -26,7 +6,15 @@
   margin-bottom: 20px;
 }
 
-.modal_login__label {
+.modal_registration {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
+
+.modal_registration__label {
   position: relative;
   display: block;
   /* @include lh(14px, 12px, 12px); */
@@ -34,7 +22,7 @@
   color: var(--footer-text-color);
 }
 
-.modal_login__input {
+.modal_registration__input {
   width: 100%;
 
   padding-top: 11px;
@@ -46,19 +34,11 @@
   box-sizing: border-box;
   border-radius: 4px;
   transition: border-color var(--time) var(--cubic);
-}
 
-.modal_login__input:hover,
-.modal_login__input:focus {
-  border-color: var(--accent-text-color);
-}
-
-.signUp_now,
-.signIn_now {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 25px;
+  &:hover,
+  &:focus {
+    border-color: var(--accent-text-color);
+  }
 }
 
 .button_modal_btn {
@@ -89,19 +69,5 @@
     background-color: var(--accent-text-color);
     border-color: transparent;
     color: var(--white-text-color);
-  }
-}
-
-.signUp_now__link {
-  color: var(--accent-text-color);
-  cursor: pointer;
-  margin-left: 10px;
-  letter-spacing: 0.03em;
-
-  transition: transform var(--time) var(--cubic);
-
-  &:focus,
-  &:hover {
-    transform: scale(1.15);
   }
 }
