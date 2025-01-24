@@ -1,0 +1,14 @@
+.logOut {
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  color: var(--white-text-color);
+  cursor: pointer;
+
+  transition: color var(--time) var(--cubic);
+
+  &:hover,
+  &:focus {
+    color: var(--accent-text-color);
+  }
+}

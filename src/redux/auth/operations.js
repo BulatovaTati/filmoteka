@@ -4,15 +4,22 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } f
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ name, email, password }, { rejectWithValue }) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password, name);
       const user = userCredential.user;
 
-      if (!user) return rejectWithValue('User not authenticated');
-
-      const token = await user.getIdToken();
-      return { token, user };
+      if (user) {
+        const token = await user.getIdToken();
+        return {
+          token,
+          user: {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+          },
+        };
+      }
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -23,10 +30,6 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      if (!email || !password) {
-        return rejectWithValue('Email and password are required');
-      }
-
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
