@@ -4,7 +4,7 @@ import { selectIsLoggedIn } from '../../../redux/auth/selectors';
 import buildLinkClass from './buildLinkClass';
 import s from './Navigation.module.css';
 
-const Navigation = () => {
+const Navigation = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
@@ -23,6 +23,7 @@ const Navigation = () => {
           </NavLink>
         </li>
       )}
+      <li className={s.nav__item}>{children}</li>
     </ul>
   );
 };

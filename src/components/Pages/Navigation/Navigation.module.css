@@ -20,9 +20,10 @@
 
 .nav__link {
   color: var(--white-text-color);
-  transition: color var(--time) var(--cubic);
   max-width: 100%;
   text-decoration: none;
+  text-transform: uppercase;
+  transition: color var(--time) var(--cubic);
 
   &:hover,
   &:focus {
@@ -42,6 +43,6 @@
     border-radius: 2px;
     background-color: var(--current-page);
     left: 0;
-    bottom: -1px;
+    bottom: -3px;
   }
 }
