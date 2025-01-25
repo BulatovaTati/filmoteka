@@ -2,13 +2,16 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-axios.defaults.headers.common.Authorization = 'f3b7458c34b3a95455ce5f7edb53b2eb';
+axios.defaults.params = {
+  api_key: 'f3b7458c34b3a95455ce5f7edb53b2eb',
+};
 
 export const getPopularData = createAsyncThunk(
   'movies/fetchPopular',
   async (page, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/trending/movie/day?page=${page}`);
+
       return data.results;
     } catch (error) {
       return rejectWithValue(error.message);

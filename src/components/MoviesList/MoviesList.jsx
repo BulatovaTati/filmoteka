@@ -1,9 +1,13 @@
+import { useSelector } from 'react-redux';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
 import MovieItem from './MovieItem/MovieItem';
 import s from './MoviesList.module.css';
+import { selectMovies } from '../../redux/movies/selectors';
 
-const MoviesList = ({ movies }) => {
+const MoviesList = () => {
+  const movies = useSelector(selectMovies);
+
   return (
     <Section>
       <Container>
