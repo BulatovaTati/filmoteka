@@ -1,4 +1,6 @@
 import Modal from 'react-modal';
+import { MdCancel } from 'react-icons/md';
+
 import RegistrationForm from '../Auth/RegistrationForm/RegistrationForm';
 import s from './RegistrationModal.module.css';
 
@@ -15,7 +17,7 @@ const RegistrationModal = ({ isOpen, onClose }) => {
       shouldCloseOnOverlayClick={true}
     >
       <button onClick={onClose} className={s.cancelBtn}>
-        Cancel
+        <MdCancel />
       </button>
       <RegistrationForm />
     </Modal>

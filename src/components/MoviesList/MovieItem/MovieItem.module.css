@@ -1,6 +1,10 @@
 .card__item {
-  width: 280px;
   position: relative;
+  perspective: 600px;
+  transform-style: preserve-3d;
+  transform-origin: 100%;
+  transition: transform 1s ease-in-out;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -8,6 +12,40 @@
 
   @media screen and (min-width: 1280px) {
     width: 395px;
+  }
+}
+
+.is-flipped {
+  transform: translate(-100%) rotateY(-180deg);
+}
+
+.card__item_front {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card__item_back {
+  padding: 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 17px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+
+  backface-visibility: hidden;
+  background-color: rgba(255, 0, 27, 0.4);
+  border-radius: 4px 4px 4px 4px;
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  @media screen and (min-width: 768px) {
+    padding: 28px;
   }
 }
 
@@ -40,6 +78,7 @@
 
 .card__decr {
   display: flex;
+  gap: 5px;
   align-items: center;
 
   @media screen and (min-width: 1280px) {
@@ -48,6 +87,7 @@
 }
 
 .card__title {
+  margin-bottom: 5px;
   /* @include lh(16px, 12px, 12px); */
   color: var(--main-text-color);
   text-transform: uppercase;
@@ -60,7 +100,6 @@
 .card__genre,
 .card__year {
   color: var(--accent-text-color);
-  margin-right: 5px;
 }
 
 .card__rating {
@@ -71,93 +110,15 @@
   background-color: var(--accent-bg-color);
   border-radius: 5px;
   text-align: center;
-  padding: 1px 8px;
 
   @media screen and (min-width: 1280px) {
     width: 44px;
     height: 20px;
-    padding: 3px 10px;
     /* @include lh(14px, 15px, 15px); */
   }
 }
 
-.icon_hand {
-  background-color: transparent;
-  cursor: pointer;
-  position: absolute;
-  bottom: 52px;
-  right: 10px;
-  fill: var(--accent-text-color);
-  animation: scale-logo 2000ms infinite linear;
-
-  @media screen and (min-width: 1280px) {
-    display: none;
-  }
-}
-
-.card__item {
-  position: relative;
-}
-
-.gallery_art {
-  position: relative;
-  perspective: 800px;
-}
-
-.card__img_container {
-  transition: 1s;
-}
-
-.cards_back_text {
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    position: absolute;
-    top: 0;
-
-    padding: 10px 20px;
-    width: 100%;
-
-    font-size: 17px;
-    color: var(--white-text-color);
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-
-    backface-visibility: hidden;
-    background-color: rgba(255, 0, 27, 0.6);
-    border-radius: 4px 4px 4px 4px;
-    transform: rotateY(180deg);
-    transition: 1s;
-    height: 89.5%;
-  }
-}
-
-.gallery_art:hover .card__img_container {
-  @media screen and (min-width: 1280px) {
-    transform: rotateY(180deg);
-    backface-visibility: visible;
-  }
-}
-
-.gallery_art:hover .cards_back_text {
-  @media screen and (min-width: 1280px) {
-    transform: rotateY(360deg);
-  }
-}
-
 .description__films {
-  width: 100%;
-}
-
-.cards_back__title {
-  margin-bottom: 20px;
-}
-
-.button.ite__clear {
-  color: var(--white-text-color);
-  background-color: rgba(255, 107, 1, 0.8);
-  border-color: var(--white-text-color);
+  max-height: 250px;
+  overflow-y: auto;
 }

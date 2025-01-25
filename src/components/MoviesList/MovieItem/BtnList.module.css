@@ -32,4 +32,5 @@
 .btn_list {
   display: flex;
   gap: 10px;
+  margin-top: auto;
 }
