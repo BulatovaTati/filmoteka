@@ -15,7 +15,7 @@
   }
 }
 
-.is-flipped {
+.isflipped {
   transform: translate(-100%) rotateY(-180deg);
 }
 
@@ -26,7 +26,7 @@
 }
 
 .card__item_back {
-  padding: 18px;
+  padding: 16px;
   position: absolute;
   top: 0;
   left: 0;
@@ -120,5 +120,14 @@
 
 .description__films {
   max-height: 250px;
+  font-size: 16px;
   overflow-y: auto;
+}
+
+.read_more {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
+  cursor: pointer;
 }

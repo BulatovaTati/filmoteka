@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import s from './MovieItem.module.css';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectGenres } from '../../../redux/movies/selectors';
 import MoviePoster from './MoviePoster';
 import MovieCardInfo from './MovieCardInfo';
 import MovieOverview from './MovieOverview';
-import { selectGenres } from '../../../redux/movies/selectors';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import RegistrationModal from '../../Modals/RegistrationModal';
+import s from './MovieItem.module.css';
 
 const MovieItem = ({ movie }) => {
   const {
@@ -18,7 +18,9 @@ const MovieItem = ({ movie }) => {
     name,
     overview,
   } = movie;
+
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const genres = useSelector(selectGenres);
 
@@ -28,11 +30,19 @@ const MovieItem = ({ movie }) => {
   });
 
   const handleCardFlip = () => {
-    setIsFlipped(prev => !prev);
+    if (!isModalOpen) {
+      setIsFlipped(prev => !prev);
+    }
+  };
+
+  const openModal = () => setIsModalOpen(true);
+  const onClose = () => {
+    setIsModalOpen(false);
+    setIsFlipped(false);
   };
 
   return (
-    <li className={`${s.card__item} ${isFlipped ? s['is-flipped'] : ''}`} onClick={handleCardFlip}>
+    <li className={`${s.card__item} ${isFlipped ? s.isflipped : ''}`} onClick={handleCardFlip}>
       <div className={s.card__item_front}>
         <MoviePoster poster_path={poster_path} title={title} />
         <MovieCardInfo
@@ -42,11 +52,13 @@ const MovieItem = ({ movie }) => {
           vote_average={vote_average}
           release_date={release_date}
           first_air_date={first_air_date}
+          openModal={openModal}
         />
       </div>
       <div className={s.card__item_back}>
         <MovieOverview overview={overview} />
       </div>
+      {isModalOpen && <RegistrationModal isOpen={isModalOpen} onClose={onClose} />}
     </li>
   );
 };
