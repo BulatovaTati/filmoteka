@@ -1,32 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader/Loader';
 import MoviesList from '../components/MoviesList/MoviesList';
-import { getPopularData } from '../service/fetchApi';
+import { fetchMovieByGenres, getPopularData } from '../redux/movies/operations';
+import { useEffect } from 'react';
+import { selectError, selectIsLoading } from '../redux/movies/selectors';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setError] = useState(null);
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
-    (async () => {
-      try {
-        setIsLoading(true);
-        const data = await getPopularData();
-        setMovies(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
+    dispatch(getPopularData(1));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchMovieByGenres());
+  }, [dispatch]);
 
   return (
     <>
       {isLoading && <Loader />}
-      {isError && <p>Opps</p>}
-      {<MoviesList movies={movies} />}
+      {error && <p>Opps</p>}
+      {<MoviesList />}
+      {!isLoading && <MoviesList />}
     </>
   );
 };
