@@ -1,8 +1,22 @@
 import s from './MovieItem.module.css';
 import { getReleaseYear } from './helpers';
+import { MdOutlineMoreHoriz } from 'react-icons/md';
 
-const MovieCardInfo = ({ title, name, genreNames, release_date, first_air_date, vote_average }) => {
+const MovieCardInfo = ({
+  title,
+  name,
+  genreNames,
+  release_date,
+  first_air_date,
+  vote_average,
+  openModal,
+}) => {
   const year = getReleaseYear(release_date, first_air_date);
+
+  const handleButtonClick = e => {
+    e.stopPropagation();
+    openModal();
+  };
 
   return (
     <div className={s.card__info}>
@@ -16,6 +30,9 @@ const MovieCardInfo = ({ title, name, genreNames, release_date, first_air_date, 
         </p>
         <p className={s.card__year}>{year}</p>
         <p className={s.card__rating}>{vote_average ? vote_average.toFixed(1) : 'No rating'}</p>
+        <button type="button" className={s.read_more} onClick={handleButtonClick}>
+          <MdOutlineMoreHoriz size={25} />
+        </button>
       </div>
     </div>
   );
