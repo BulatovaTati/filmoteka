@@ -3,6 +3,7 @@
   perspective: 600px;
   transform-style: preserve-3d;
   transform-origin: 100%;
+  width: 100%;
   transition: transform 1s ease-in-out;
   cursor: pointer;
 
@@ -50,15 +51,9 @@
 }
 
 .card__img_container {
-  height: 398px;
   margin-bottom: 8px;
 
-  @media screen and (min-width: 768px) {
-    height: 455px;
-  }
-
   @media screen and (min-width: 1280px) {
-    height: 574px;
     margin-bottom: 12px;
   }
 }
@@ -125,7 +120,7 @@
 }
 
 .read_more {
-  padding: 5px;
+  padding: 5px 10px;
   background-color: transparent;
   border: none;
   margin-left: auto;

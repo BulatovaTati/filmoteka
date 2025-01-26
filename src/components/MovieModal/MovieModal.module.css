@@ -1,0 +1,123 @@
+.modal_movie__thumb {
+  margin-bottom: 21px;
+
+  border-radius: 5px;
+  overflow: hidden;
+  height: auto;
+  display: flex;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    margin-bottom: 0;
+    margin-right: 50px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 375px;
+    margin-right: 30px;
+  }
+}
+
+.modal_movie__info_container {
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    width: 318px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 391px;
+  }
+}
+
+.modal_movie__title {
+  margin-bottom: 19px;
+
+  /* @include lh(23px, 20px, 20px); */
+  font-weight: 500;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 1280px) {
+    /* @include lh(35px, 30px, 30px); */
+  }
+}
+
+.modal_movie__table {
+  width: 100%;
+  margin-bottom: 20px;
+
+  /* @include lh(16px, 12px, 12px); */
+}
+
+.modal_movie__cell {
+  width: 50%;
+  padding-bottom: 5px;
+}
+
+.modal_movie__cell_gray_text {
+  color: var(--modal-items);
+}
+
+.modal_movie__cell_last_row {
+  padding-bottom: 0;
+}
+
+.modal_movie__span {
+  display: inline-block;
+
+  width: 36px;
+  border-radius: 5px;
+
+  text-align: center;
+}
+
+.modal_movie__span_vote {
+  margin-right: 5px;
+  background-color: var(--accent-bg-color);
+  color: var(--white-text-color);
+}
+
+.modal_movie__span_votes {
+  margin-left: 5px;
+  background-color: var(--modal-light-gray);
+  color: #000;
+}
+
+.modal_movie__subtitle {
+  margin-bottom: 8px;
+  /* 
+  @include lh(16px, 12px, 12px); */
+  text-transform: uppercase;
+}
+
+.modal_movie__text {
+  margin-bottom: 20px;
+
+  /* @include lh(20px, 12px, 12px); */
+
+  @media screen and (min-width: 768px) and (max-width: 1279.99px) {
+    margin-bottom: 40px;
+  }
+}
+
+.button__trailer {
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #000;
+  margin-bottom: 20px;
+  transition: color var(--time) var(--cubic);
+
+  &:hover .modal_movie__svg_ytb,
+  &:focus .modal_movie__svg_ytb {
+    color: white;
+  }
+}
+
+.modal_movie__svg_ytb {
+  margin-left: 10px;
+  width: 25px;
+  height: 25px;
+  color: red;
+}
