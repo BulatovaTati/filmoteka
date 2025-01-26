@@ -4,11 +4,12 @@ import { selectGenres } from '../../../redux/movies/selectors';
 import MoviePoster from './MoviePoster';
 import MovieCardInfo from './MovieCardInfo';
 import MovieOverview from './MovieOverview';
-import RegistrationModal from '../../Modals/RegistrationModal';
 import s from './MovieItem.module.css';
+import ModalMovie from '../../Modals/ModalMovie';
 
 const MovieItem = ({ movie }) => {
   const {
+    id,
     poster_path,
     title,
     genre_ids,
@@ -44,7 +45,9 @@ const MovieItem = ({ movie }) => {
   return (
     <li className={`${s.card__item} ${isFlipped ? s.isflipped : ''}`} onClick={handleCardFlip}>
       <div className={s.card__item_front}>
-        <MoviePoster poster_path={poster_path} title={title} />
+        <div className={s.card__img_container}>
+          <MoviePoster poster_path={poster_path} title={title} />
+        </div>
         <MovieCardInfo
           genreNames={genreNames}
           name={name}
@@ -58,7 +61,7 @@ const MovieItem = ({ movie }) => {
       <div className={s.card__item_back}>
         <MovieOverview overview={overview} />
       </div>
-      {isModalOpen && <RegistrationModal isOpen={isModalOpen} onClose={onClose} />}
+      {isModalOpen && <ModalMovie id={id} isOpen={isModalOpen} onClose={onClose} />}
     </li>
   );
 };
