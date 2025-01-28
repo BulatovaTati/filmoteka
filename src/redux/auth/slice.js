@@ -21,20 +21,17 @@ const authSlice = createSlice({
         state.user = { uid, email, name };
         state.token = payload.token;
         state.isLoggedIn = true;
-        customToast('success', 'Successful registration');
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
         const { uid, email, name } = payload.user;
         (state.user = { uid, email }), name;
         state.token = payload.token;
         state.isLoggedIn = true;
-        customToast('success', 'Successful Log In');
       })
       .addCase(logOut.fulfilled, state => {
         state.user = {};
         state.token = null;
         state.isLoggedIn = false;
-        customToast('success', 'Successful Log Out');
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
