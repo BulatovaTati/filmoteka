@@ -1,8 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
-import { register } from '../../../redux/auth/operations';
-import { validationSchemaRegistrationForm } from '../../validationsForm';
+
 import FormErrorMessage from '../ErrorText/ErrorText';
+
+import { validationSchemaRegistrationForm } from '../../validationsForm';
+import { register } from '../../../redux/auth/operations';
+
 import s from './RegistrationForm.module.css';
 
 const initialValues = {

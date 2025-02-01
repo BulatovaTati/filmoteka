@@ -2,11 +2,11 @@ import LoginForm from '../components/Auth/LoginForm/LoginForm';
 
 const Login = () => {
   return (
-    <>
+ 
       <>
         <LoginForm />
       </>
-    </>
+  
   );
 };
 
