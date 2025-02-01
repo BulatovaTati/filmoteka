@@ -1,13 +1,26 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import { MdCancel } from 'react-icons/md';
-import s from './RegistrationModal.module.css';
-import styles from './ModalMovie.module.css';
 
 import MovieModal from '../MovieModal/MovieModal';
+
+import { fetchMovieById } from '../../redux/movies/operations';
+import { selectMovie } from '../../redux/movies/selectors';
+
+import s from './RegistrationModal.module.css';
+import styles from './ModalMovie.module.css';
 
 Modal.setAppElement('#root');
 
 const ModalMovie = ({ isOpen, onClose, id }) => {
+  const movie = useSelector(selectMovie);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMovieById(id));
+  }, [dispatch, id]);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -20,7 +33,7 @@ const ModalMovie = ({ isOpen, onClose, id }) => {
       <button onClick={onClose} className={s.cancelBtn}>
         <MdCancel />
       </button>
-      <MovieModal id={id} />
+      <MovieModal movie={movie} />
     </Modal>
   );
 };

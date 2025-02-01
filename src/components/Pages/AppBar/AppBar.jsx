@@ -1,14 +1,15 @@
 import { useSelector } from 'react-redux';
+import { FiFilm } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { selectIsLoggedIn } from '../../../redux/auth/selectors';
+
 import Navigation from '../Navigation/Navigation';
 import UserMenu from '../../Auth/UserMenu/UserMenu';
 import AuthNav from '../../Auth/AuthNav/AuthNav';
-import s from './AppBar.module.css';
-
-import { FiFilm } from 'react-icons/fi';
 import Container from '../../Container/Container';
 import SearchBar from '../../SearchBar/SearchBar';
+
+import { selectIsLoggedIn } from '../../../redux/auth/selectors';
+import s from './AppBar.module.css';
 
 const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

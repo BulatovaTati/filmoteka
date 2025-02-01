@@ -1,10 +1,13 @@
 import { useDispatch } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import { validationSchemaLoginForm } from '../../validationsForm';
-import { logIn } from '../../../redux/auth/operations';
+
 import Container from '../../Container/Container';
 import FormErrorMessage from '../ErrorText/ErrorText';
+
+import { validationSchemaLoginForm } from '../../validationsForm';
+import { logIn } from '../../../redux/auth/operations';
+
 import s from './LoginForm.module.css';
 
 const initialValues = { email: '', password: '' };

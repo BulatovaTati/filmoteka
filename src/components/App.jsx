@@ -1,14 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
-import { refreshUser } from '../redux/auth/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import Home from '../pages/Home';
 import Layout from './Pages/Layout/Layout';
+import NotFound from '../pages/NotFound';
+
 import RestrictedRoute from './Auth/RestrictedRoute';
 import PrivateRoute from './Auth/PrivateRoute';
+
+import { selectIsFetching } from '../redux/auth/selectors';
+import { refreshUser } from '../redux/auth/operations';
 import { auth } from '../firebase';
-import NotFound from '../pages/NotFound';
 
 const Library = lazy(() => import('../pages/Library'));
 const Login = lazy(() => import('../pages/Login'));
@@ -16,6 +20,7 @@ const Registration = lazy(() => import('../pages/Registration'));
 
 const App = () => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsFetching);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -27,8 +32,9 @@ const App = () => {
     return () => unsubscribe();
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? null : (
     <>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

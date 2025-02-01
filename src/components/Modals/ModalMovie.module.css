@@ -19,14 +19,14 @@
 
   @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: flex-start;
-
+    gap: 50px;
     width: 704px;
-    padding: 40px 36px 40px 36px;
+    padding: 40px 36px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 806px;
+    gap: 25px;
   }
 }
 

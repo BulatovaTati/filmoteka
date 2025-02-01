@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-
+ 
 export const register = createAsyncThunk(
   'auth/register',
   async ({ email, password }, { rejectWithValue }) => {
@@ -45,6 +45,7 @@ export const logIn = createAsyncThunk(
 
       return rejectWithValue('User not authenticated');
     } catch (error) {
+   
       return rejectWithValue(error.message);
     }
   }

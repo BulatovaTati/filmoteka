@@ -1,46 +1,40 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { FaYoutube } from 'react-icons/fa';
 
-import { fetchMovieById } from '../../redux/movies/operations';
-import MoviePoster from '../MoviesList/MovieItem/MoviePoster';
-import { selectGenres, selectMovie } from '../../redux/movies/selectors';
 import BtnList from '../MoviesList/MovieItem/BtnList';
+import MoviePoster from '../MoviesList/MovieItem/MoviePoster';
+
 import s from './MovieModal.module.css';
 import styles from '../MoviesList/MovieItem/BtnList.module.css';
 
-const MovieModal = ({ id }) => {
-  const dispatch = useDispatch();
+const MovieModal = ({ movie }) => {
   const {
     poster_path,
     title,
-    genre_ids,
+    genres,
     popularity,
     vote_count,
     vote_average,
     original_title,
     overview,
     production_companies,
-  } = useSelector(selectMovie);
+  } = movie;
 
-  useEffect(() => {
-    dispatch(fetchMovieById(id));
-  }, [dispatch, id]);
+  const genreNames = genres.map(genre => genre.name || 'Unknown');
 
-  const genres = useSelector(selectGenres);
+  const formatGenres = genreNames => {
+    if (genreNames.length === 1) return genreNames[0];
+    if (genreNames.length > 3) return [...genreNames.slice(0, 3), 'Others'].join(', ');
+    return genreNames.join(', ');
+  };
 
-  // const genreNames = genre_ids.map(id => {
-  //   const genre = genres.find(g => g.id === id);
-  //   return genre ? genre.name : 'Unknown';
-  // });
+  const logo =
+    Array.isArray(production_companies) && production_companies.length > 0
+      ? production_companies.find(log => log.logo_path)?.logo_path
+      : null;
 
-  // const logo = production_companies.map(log => {
-  //   if (log.logo_path === null) {
-  //     return `https://via.placeholder.com/200x100`;
-  //   } else {
-  //     return `https://image.tmdb.org/t/p/w200/${log.logo_path}`;
-  //   }
-  // });
+  const logoUrl = logo
+    ? `https://image.tmdb.org/t/p/w200${logo}`
+    : `https://images.placeholders.dev/200x100`;
 
   return (
     <>
@@ -84,9 +78,7 @@ const MovieModal = ({ id }) => {
                 Genre
               </td>
               <td className={`${s.modal_movie__cell} ${s.modal_movie__cell_last_row}`}>
-                {/* {genreNames.length > 0
-                  ? genreNames.splice(0, 2).concat('Others').join(', ')
-                  : 'no genres'} */}
+                {genreNames.length > 0 ? formatGenres(genreNames) : 'No genres'}
               </td>
             </tr>
           </tbody>
@@ -98,7 +90,7 @@ const MovieModal = ({ id }) => {
         <h3 className={s.modal_movie__subtitle}>About</h3>
         <p className={s.modal_movie__text}>{overview}</p>
         <BtnList />
-        {/* <img className="modal_movie--logo" src={logo[0]} alt="No production informations" /> */}
+        {logoUrl && <img className={s.production_logo} src={logoUrl} alt="Production logo" />}
       </div>
     </>
   );
