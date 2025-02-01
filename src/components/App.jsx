@@ -10,9 +10,10 @@ import NotFound from '../pages/NotFound';
 import RestrictedRoute from './Auth/RestrictedRoute';
 import PrivateRoute from './Auth/PrivateRoute';
 
-import { selectIsFetching } from '../redux/auth/selectors';
 import { refreshUser } from '../redux/auth/operations';
+import { selectIsRefreshing } from '../redux/auth/selectors';
 import { auth } from '../firebase';
+import Loader from './Loader/Loader';
 
 const Library = lazy(() => import('../pages/Library'));
 const Login = lazy(() => import('../pages/Login'));
@@ -20,7 +21,7 @@ const Registration = lazy(() => import('../pages/Registration'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsFetching);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -32,7 +33,9 @@ const App = () => {
     return () => unsubscribe();
   }, [dispatch]);
 
-  return isRefreshing ? null : (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
       <Toaster />
       <Routes>
