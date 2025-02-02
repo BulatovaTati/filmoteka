@@ -23,7 +23,6 @@ const Home = () => {
       {isLoading && <Loader />}
       {error && <p>Opps</p>}
       {<MoviesList />}
-      {!isLoading && <MoviesList />}
     </>
   );
 };
