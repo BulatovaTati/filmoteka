@@ -1,22 +1,38 @@
+import { Formik, Form, Field } from 'formik';
+import { useDispatch } from 'react-redux';
 import { IoMdSearch } from 'react-icons/io';
 import s from './SearchBar.module.css';
+import { fetchMovieSearcher } from '../../redux/movies/operations';
+import ErrorText from './ErrorText';
+
+const initialValues = {
+  searchQuery: '',
+};
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, { resetForm }) => {
+    dispatch(fetchMovieSearcher(values));
+
+    resetForm();
+  };
+
   return (
-    <>
-      <form className={s.input__form}>
-        <input
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Form className={s.input__form}>
+        <Field
           className={s.input__header}
           name="searchQuery"
           type="text"
           placeholder="Search films"
         />
-        <button className={s.input__search_btn} aria-label="submit-button" type="submit">
-          <IoMdSearch className={s.input__search_icon} size={16} />
+        <ErrorText name="searchQuery" />
+        <button className={s.input__search_btn} type="submit">
+          <IoMdSearch className={s.input__search_icon} size={18} />
         </button>
-      </form>
-      <p className={s.input__error}>Please enter a movie name to search.</p>
-    </>
+      </Form>
+    </Formik>
   );
 };
 
