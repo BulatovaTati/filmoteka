@@ -17,3 +17,8 @@
     column-gap: 15px;
   }
 }
+
+.no_matches {
+  margin-top: 50px;
+  text-align: center;
+}

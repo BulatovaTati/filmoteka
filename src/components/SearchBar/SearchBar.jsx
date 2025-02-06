@@ -2,8 +2,11 @@ import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { IoMdSearch } from 'react-icons/io';
 import s from './SearchBar.module.css';
-import { fetchMovieSearcher } from '../../redux/movies/operations';
 import ErrorText from './ErrorText';
+import customToast from '../Toast/Toast';
+import { setSearchQuery } from '../../redux/movies/slice';
+
+const ERROR_TEXT = 'Oops... enter smt!';
 
 const initialValues = {
   searchQuery: '',
@@ -13,7 +16,13 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(fetchMovieSearcher(values));
+    if (values.searchQuery === '') {
+      customToast('error', ERROR_TEXT);
+      return;
+    }
+
+    console.log('values.searchQuery: ', values.searchQuery);
+    dispatch(setSearchQuery(values.searchQuery));
 
     resetForm();
   };

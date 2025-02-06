@@ -6,6 +6,9 @@ import MoviePoster from '../MoviesList/MovieItem/MoviePoster';
 import s from './MovieModal.module.css';
 import styles from '../MoviesList/MovieItem/BtnList.module.css';
 
+const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const noPosterImg = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
+
 const MovieModal = ({ movie }) => {
   const {
     poster_path,
@@ -39,7 +42,12 @@ const MovieModal = ({ movie }) => {
   return (
     <>
       <div className={s.modal_movie__thumb}>
-        <MoviePoster poster_path={poster_path} title={title} />
+        <img
+          className={s.card__img}
+          src={`${poster_path === null ? noPosterImg : BASE_IMG_URL + poster_path}`}
+          alt={title}
+          loading="lazy"
+        />
       </div>
       <div className={s.modal_movie__info_container}>
         <h2 className={s.modal_movie__title}>{title}</h2>
