@@ -5,6 +5,7 @@ import {
   getPopularData,
   fetchMovieSearcher,
 } from './operations';
+import customToast from '../../components/Toast/Toast';
 
 const initialState = {
   upcomingMovies: [],
@@ -13,12 +14,21 @@ const initialState = {
   selectedMovie: {},
   isLoading: false,
   error: null,
+  currentPage: 1,
+  totalPages: 1,
+  searchQuery: '',
 };
 
 const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
     clearSelectedMovie: state => {
       state.selectedMovie = {};
     },
@@ -31,7 +41,8 @@ const moviesSlice = createSlice({
       .addCase(getPopularData.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = action.payload.results;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(getPopularData.rejected, (state, action) => {
         state.isLoading = false;
@@ -65,9 +76,13 @@ const moviesSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchMovieSearcher.fulfilled, (state, action) => {
+        console.log('action: ', action.payload);
+        if (action.payload.length === 0) customToast('warn', 'No matches');
+
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = action.payload.results;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchMovieSearcher.rejected, (state, action) => {
         state.isLoading = false;
@@ -76,5 +91,5 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { clearSelectedMovie } = moviesSlice.actions;
+export const { setCurrentPage, setSearchQuery, clearSelectedMovie } = moviesSlice.actions;
 export const moviesReducer = moviesSlice.reducer;

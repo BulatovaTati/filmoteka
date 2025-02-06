@@ -45,23 +45,31 @@
   border-radius: 4px 4px 4px 4px;
   transform: rotateY(180deg);
   overflow-y: auto;
+
   @media screen and (min-width: 768px) {
     padding: 28px;
   }
 }
 
 .card__img_container {
+  height: 398px;
   margin-bottom: 8px;
 
+  @media screen and (min-width: 768px) {
+    height: 455px;
+  }
+
   @media screen and (min-width: 1280px) {
+    height: 574px;
     margin-bottom: 12px;
   }
 }
-
 .card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 5px;
-  display: block;
 }
 
 .card__info {

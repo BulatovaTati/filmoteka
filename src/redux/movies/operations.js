@@ -12,7 +12,10 @@ export const getPopularData = createAsyncThunk(
     try {
       const { data } = await axios.get(`/trending/movie/day?page=${page}`);
 
-      return data.results;
+      return {
+        results: data.results,
+        totalPages: data.total_pages,
+      };
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -24,7 +27,11 @@ export const fetchMovieSearcher = createAsyncThunk(
   async ({ searchQuery, page = 1 }, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/search/movie?query=${searchQuery}&page=${page}`);
-      return data.results;
+
+      return {
+        results: data.results,
+        totalPages: data.total_pages,
+      };
     } catch (error) {
       return rejectWithValue(error.message);
     }

@@ -37,8 +37,7 @@
 .input__search_btn {
   background-color: transparent;
   border: none;
-  margin-left: -20px;
-  margin-bottom: 12px;
+  padding: 5px;
   cursor: pointer;
 
   &:hover,
@@ -67,9 +66,4 @@
   justify-content: center;
   opacity: 0;
   transition: all 4s ease;
-}
-
-.visually-show-error {
-  transition: all 4s ease;
-  opacity: 1;
 }

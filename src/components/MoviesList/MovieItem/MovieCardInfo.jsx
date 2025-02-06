@@ -23,9 +23,7 @@ const MovieCardInfo = ({
       <h2 className={s.card__title}>{title ? title : name}</h2>
       <div className={s.card__decr}>
         <p className={s.card__genre}>
-          {genreNames.length > 0
-            ? genreNames.splice(0, 2).concat('Others').join(', ')
-            : 'no genres'}
+          {genreNames.length > 0 ? genreNames.slice(0, 2).concat('Others').join(', ') : 'no genres'}
           <span> | </span>
         </p>
         <p className={s.card__year}>{year}</p>
