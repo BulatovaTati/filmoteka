@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectGenres } from '../../../redux/movies/selectors';
 import MoviePoster from './MoviePoster';
 import MovieCardInfo from './MovieCardInfo';
 import MovieOverview from './MovieOverview';
 import s from './MovieItem.module.css';
 import ModalMovie from '../../Modals/ModalMovie';
+import { clearSelectedMovie } from '../../../redux/movies/slice';
 
 const MovieItem = ({ movie }) => {
   const {
@@ -22,7 +23,7 @@ const MovieItem = ({ movie }) => {
 
   const [isFlipped, setIsFlipped] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const dispatch = useDispatch();
   const genres = useSelector(selectGenres);
 
   const genreNames = genre_ids.map(id => {
@@ -40,6 +41,7 @@ const MovieItem = ({ movie }) => {
   const onClose = () => {
     setIsModalOpen(false);
     setIsFlipped(false);
+    dispatch(clearSelectedMovie());
   };
 
   return (

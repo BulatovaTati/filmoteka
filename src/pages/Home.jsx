@@ -1,18 +1,30 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader/Loader';
 import MoviesList from '../components/MoviesList/MoviesList';
-import { fetchMovieByGenres, getPopularData } from '../redux/movies/operations';
+import { fetchMovieByGenres, fetchMovieSearcher, getPopularData } from '../redux/movies/operations';
 import { useEffect } from 'react';
-import { selectError, selectIsLoading } from '../redux/movies/selectors';
+import {
+  selectCurrentPage,
+  selectError,
+  selectIsLoading,
+  selectSearchQuery,
+} from '../redux/movies/selectors';
+import TuiPagination from '../components/TuiPagination/TuiPagination';
 
 const Home = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const currentPage = useSelector(selectCurrentPage);
   const error = useSelector(selectError);
+  const searchQuery = useSelector(selectSearchQuery);
 
   useEffect(() => {
-    dispatch(getPopularData(1));
-  }, [dispatch]);
+    if (searchQuery.trim()) {
+      dispatch(fetchMovieSearcher({ searchQuery, page: currentPage }));
+    } else {
+      dispatch(getPopularData(currentPage));
+    }
+  }, [dispatch, currentPage, searchQuery]);
 
   useEffect(() => {
     dispatch(fetchMovieByGenres());
@@ -23,6 +35,7 @@ const Home = () => {
       {isLoading && <Loader />}
       {error && <p>Opps</p>}
       {<MoviesList />}
+      <TuiPagination />
     </>
   );
 };

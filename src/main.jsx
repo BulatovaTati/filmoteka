@@ -6,6 +6,8 @@ import { store } from './redux/store';
 
 import App from './components/App';
 import 'modern-normalize';
+import 'material-icons/iconfont/material-icons.css';
+
 import './index.css';
 
 createRoot(document.getElementById('root')).render(

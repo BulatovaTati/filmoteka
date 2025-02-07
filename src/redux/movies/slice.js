@@ -15,7 +15,7 @@ const initialState = {
   isLoading: false,
   error: null,
   currentPage: 1,
-  totalPages: 1,
+  totalPages: 0,
   searchQuery: '',
 };
 
@@ -76,7 +76,6 @@ const moviesSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchMovieSearcher.fulfilled, (state, action) => {
-        console.log('action: ', action.payload);
         if (action.payload.length === 0) customToast('warn', 'No matches');
 
         state.isLoading = false;

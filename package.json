@@ -15,6 +15,7 @@
     "clsx": "^2.1.1",
     "firebase": "^11.2.0",
     "formik": "^2.4.6",
+    "material-icons": "^1.13.13",
     "modern-normalize": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
