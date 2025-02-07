@@ -1,0 +1,132 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 60px;
+  }
+}
+
+.tui-page-btn {
+  margin-right: 4px;
+  padding: 13px;
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #000;
+
+  background-color: transparent;
+  border-radius: 5px;
+  text-wrap: nowrap;
+  transition: 350ms;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--white-text-color);
+    background-color: rgba(255, 107, 8, 0.7);
+  }
+}
+
+.tui-is-selected {
+  padding: 13px;
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--white-text-color);
+
+  background-color: var(--accent-text-color);
+  border-radius: 5px;
+
+  cursor: default;
+
+  &:hover,
+  &:focus {
+    background-color: var(--accent-text-color);
+    border-radius: 5px;
+  }
+}
+
+.tui-prev,
+.tui-next {
+  padding: 12px;
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--pagination-arrow);
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  transition: 350ms;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 107, 8, 0.7);
+  }
+}
+
+.tui-first {
+  transition: all 350ms ease-in-out;
+}
+
+.tui-prev {
+  order: -1;
+}
+
+.tui-next {
+  order: 1;
+}
+
+.custom-class-last,
+.custom-class-first,
+.tui-next-is-ellip.tui-last-child,
+.tui-prev-is-ellip.tui-first-child {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.material-icons-outlined {
+  font-family: 'Material Icons';
+  font-size: 16px;
+  line-height: 1;
+}
+
+.btn-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
