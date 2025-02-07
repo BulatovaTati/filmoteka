@@ -52,7 +52,6 @@
 }
 
 .card__img_container {
-  height: 398px;
   margin-bottom: 8px;
 
   @media screen and (min-width: 768px) {

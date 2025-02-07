@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader/Loader';
 import MoviesList from '../components/MoviesList/MoviesList';
 import { fetchMovieByGenres, fetchMovieSearcher, getPopularData } from '../redux/movies/operations';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   selectCurrentPage,
   selectError,
@@ -18,13 +18,17 @@ const Home = () => {
   const error = useSelector(selectError);
   const searchQuery = useSelector(selectSearchQuery);
 
+  const memoizedGetPopularData = useCallback(() => {
+    dispatch(getPopularData(currentPage));
+  }, [dispatch, currentPage]);
+
   useEffect(() => {
     if (searchQuery.trim()) {
       dispatch(fetchMovieSearcher({ searchQuery, page: currentPage }));
     } else {
-      dispatch(getPopularData(currentPage));
+      memoizedGetPopularData();
     }
-  }, [dispatch, currentPage, searchQuery]);
+  }, [dispatch, searchQuery, currentPage, memoizedGetPopularData]);
 
   useEffect(() => {
     dispatch(fetchMovieByGenres());

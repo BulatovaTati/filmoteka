@@ -20,7 +20,6 @@ const SearchBar = () => {
       customToast('error', ERROR_TEXT);
       return;
     }
-    console.log('SearchBar - Dispatching search query:', values.searchQuery);
     dispatch(setSearchQuery(values.searchQuery));
 
     resetForm();
