@@ -23,10 +23,10 @@
     "react-icons": "^5.4.0",
     "react-loader-spinner": "^6.1.6",
     "react-modal": "^3.16.3",
+    "react-paginate": "^8.3.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.1",
     "redux-persist": "^6.0.0",
-    "tui-pagination": "^3.4.1",
     "yup": "^1.6.1"
   },
   "devDependencies": {

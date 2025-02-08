@@ -28,6 +28,7 @@ const moviesSlice = createSlice({
     },
     setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
+      state.currentPage = 1;
     },
     clearSelectedMovie: state => {
       state.selectedMovie = {};

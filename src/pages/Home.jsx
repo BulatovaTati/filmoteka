@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import Loader from '../components/Loader/Loader';
 import MoviesList from '../components/MoviesList/MoviesList';
+import Pagination from '../components/Pagination/Pagination';
+
 import { fetchMovieByGenres, fetchMovieSearcher, getPopularData } from '../redux/movies/operations';
 import {
   selectCurrentPage,
@@ -9,7 +12,7 @@ import {
   selectIsLoading,
   selectSearchQuery,
 } from '../redux/movies/selectors';
-import TuiPagination from '../components/TuiPagination/TuiPagination';
+import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,7 +38,8 @@ const Home = () => {
       {isLoading && <Loader />}
       {error && <p>Opps</p>}
       {<MoviesList />}
-      <TuiPagination />
+      {!isLoading && <Pagination />}
+      <ScrollToTop />
     </>
   );
 };
