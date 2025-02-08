@@ -4,6 +4,7 @@ import {
   fetchMovieById,
   getPopularData,
   fetchMovieSearcher,
+  fetchUpcomingMovies,
 } from './operations';
 import customToast from '../../components/Toast/Toast';
 
@@ -37,11 +38,11 @@ const moviesSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getPopularData.pending, state => {
+        state.error = null;
         state.isLoading = true;
       })
       .addCase(getPopularData.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
         state.items = action.payload.results;
         state.totalPages = action.payload.totalPages;
       })
@@ -51,10 +52,10 @@ const moviesSlice = createSlice({
       })
       .addCase(fetchMovieByGenres.pending, state => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchMovieByGenres.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
         state.genres = action.payload;
       })
       .addCase(fetchMovieByGenres.rejected, (state, action) => {
@@ -63,10 +64,10 @@ const moviesSlice = createSlice({
       })
       .addCase(fetchMovieById.pending, state => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchMovieById.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
         state.selectedMovie = action.payload;
       })
       .addCase(fetchMovieById.rejected, (state, action) => {
@@ -75,16 +76,28 @@ const moviesSlice = createSlice({
       })
       .addCase(fetchMovieSearcher.pending, state => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchMovieSearcher.fulfilled, (state, action) => {
         if (action.payload.length === 0) customToast('warn', 'No matches');
 
         state.isLoading = false;
-        state.error = null;
         state.items = action.payload.results;
         state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchMovieSearcher.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchUpcomingMovies.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUpcomingMovies.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.upcomingMovies = action.payload.results;
+      })
+      .addCase(fetchUpcomingMovies.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

@@ -13,6 +13,7 @@ import {
   selectSearchQuery,
 } from '../redux/movies/selectors';
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
+import MovieSwiper from '../components/MovieSwiper/MovieSwiper';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const Home = () => {
     <>
       {isLoading && <Loader />}
       {error && <p>Opps</p>}
+      <MovieSwiper />
       {<MoviesList />}
       {!isLoading && <Pagination />}
       <ScrollToTop />
