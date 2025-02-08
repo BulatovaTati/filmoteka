@@ -6,6 +6,7 @@ import { setCurrentPage } from '../../redux/movies/slice';
 import { selectCurrentPage, selectTotalPages } from '../../redux/movies/selectors';
 
 import './Pagination.css';
+import Section from '../Section/Section';
 
 const Pagination = () => {
   const [pageRange, setPageRange] = useState(3);
@@ -40,22 +41,24 @@ const Pagination = () => {
   }, []);
 
   return (
-    <ReactPaginate
-      previousLabel={<span className="material-icons-outlined">chevron_left</span>}
-      nextLabel={<span className="material-icons-outlined">chevron_right</span>}
-      breakLabel={'...'}
-      pageCount={totalPages}
-      marginPagesDisplayed={1}
-      pageRangeDisplayed={pageRange}
-      onPageChange={handlePageClick}
-      containerClassName={'pagination'}
-      pageClassName={'tui-page-btn'}
-      activeClassName={'tui-is-selected'}
-      previousClassName={'tui-prev'}
-      nextClassName={'tui-next'}
-      disabledClassName={'btn-hidden'}
-      forcePage={currentPage - 1}
-    />
+    <Section>
+      <ReactPaginate
+        previousLabel={<span className="material-icons-outlined">chevron_left</span>}
+        nextLabel={<span className="material-icons-outlined">chevron_right</span>}
+        breakLabel={'...'}
+        pageCount={totalPages}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={pageRange}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        pageClassName={'tui-page-btn'}
+        activeClassName={'tui-is-selected'}
+        previousClassName={'tui-prev'}
+        nextClassName={'tui-next'}
+        disabledClassName={'btn-hidden'}
+        forcePage={currentPage - 1}
+      />
+    </Section>
   );
 };
 
