@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
+import Section from '../Section/Section';
+
 import { setCurrentPage } from '../../redux/movies/slice';
 import { selectCurrentPage, selectTotalPages } from '../../redux/movies/selectors';
 
-import './Pagination.css';
-import Section from '../Section/Section';
+import s from './Pagination.module.css';
 
 const Pagination = () => {
   const [pageRange, setPageRange] = useState(3);
@@ -15,7 +16,7 @@ const Pagination = () => {
   const totalPages = useSelector(selectTotalPages);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 240, behavior: 'smooth' });
+    window.scrollTo({ top: 680, behavior: 'smooth' });
   };
 
   const handlePageClick = ({ selected }) => {
@@ -43,19 +44,19 @@ const Pagination = () => {
   return (
     <Section>
       <ReactPaginate
-        previousLabel={<span className="material-icons-outlined">chevron_left</span>}
-        nextLabel={<span className="material-icons-outlined">chevron_right</span>}
+        previousLabel={<span className={s.pagination_icon_outlined}>chevron_left</span>}
+        nextLabel={<span className={s.pagination_icon_outlined}>chevron_right</span>}
         breakLabel={'...'}
         pageCount={totalPages}
         marginPagesDisplayed={1}
         pageRangeDisplayed={pageRange}
         onPageChange={handlePageClick}
-        containerClassName={'pagination'}
-        pageClassName={'tui-page-btn'}
-        activeClassName={'tui-is-selected'}
-        previousClassName={'tui-prev'}
-        nextClassName={'tui-next'}
-        disabledClassName={'btn-hidden'}
+        containerClassName={s.pagination}
+        pageClassName={s.pagination_btn}
+        activeClassName={s.pagination_is_selected}
+        previousClassName={s.pagination_btn_prev}
+        nextClassName={s.pagination_btn_next}
+        disabledClassName={s.pagination_btn_hidden}
         forcePage={currentPage - 1}
       />
     </Section>

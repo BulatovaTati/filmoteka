@@ -40,17 +40,21 @@ const MovieSwiper = () => {
           spaceBetween={50}
           slidesPerView={10}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          autoplay={{ delay: 2900, disableOnInteraction: false }}
           keyboard={{ enabled: true }}
           breakpoints={{
             320: {
               slidesPerView: 1,
+              spaceBetween: 15,
             },
+
             768: {
-              slidesPerView: 3,
+              slidesPerView: 2,
+              spaceBetween: 20,
             },
             1280: {
               slidesPerView: 4,
+              spaceBetween: 32,
             },
           }}
         >
