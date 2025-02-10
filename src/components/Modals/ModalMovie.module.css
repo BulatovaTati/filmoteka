@@ -1,3 +1,16 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background: var(--backdrop-image) no-repeat center/cover;
+}
+
 .modal_movie {
   position: fixed;
   top: 50%;
@@ -32,4 +45,24 @@
 
 .modal_movie::-webkit-scrollbar {
   display: none;
+}
+
+.cancelBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color var(--time) var(--cubic);
+  background-color: #f44336;
+  color: var(--white-text-color);
+
+  &:hover {
+    background-color: var(--accent-text-color);
+  }
 }

@@ -2,11 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 4px;
 }
 
-.tui-page-btn {
-  margin-right: 4px;
-  padding: 13px;
+.pagination_btn {
   width: 40px;
   height: 40px;
 
@@ -26,6 +25,10 @@
 
   cursor: pointer;
 
+  & a {
+    padding: 13px;
+  }
+
   &:hover,
   &:focus {
     color: var(--white-text-color);
@@ -33,50 +36,25 @@
   }
 }
 
-.tui-is-selected {
-  padding: 13px;
-  width: 40px;
-  height: 40px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+.pagination_is_selected {
   color: var(--white-text-color);
-
   background-color: var(--accent-text-color);
-  border-radius: 5px;
-
-  cursor: default;
-
-  &:hover,
-  &:focus {
-    background-color: var(--accent-text-color);
-    border-radius: 5px;
-  }
 }
 
-.tui-prev,
-.tui-next {
-  padding: 12px;
-  width: 40px;
-  height: 40px;
-
+.pagination_btn_prev,
+.pagination_btn_next {
   display: flex;
-  align-items: center;
   justify-content: center;
 
   background-color: var(--pagination-arrow);
   border: none;
   border-radius: 5px;
-
   cursor: pointer;
+  transition: background-color var(--time) var(--cubic);
 
-  transition: 350ms;
+  & a {
+    padding: 12px;
+  }
 
   &:hover,
   &:focus {
@@ -84,21 +62,13 @@
   }
 }
 
-.tui-prev {
-  order: -1;
-}
-
-.tui-next {
-  order: 1;
-}
-
-.material-icons-outlined {
+.pagination_icon_outlined {
   font-family: 'Material Icons';
   font-size: 16px;
   line-height: 1;
 }
 
-.btn-hidden {
+.pagination_btn_hidden {
   position: absolute;
   white-space: nowrap;
   width: 1px;
