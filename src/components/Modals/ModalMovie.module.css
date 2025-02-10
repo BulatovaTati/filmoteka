@@ -16,19 +16,15 @@
   top: 50%;
   left: 50%;
   z-index: 20;
-
-  visibility: visible;
-  overflow-y: scroll;
-
-  border-radius: 5px;
+  width: 280px;
   max-height: 96%;
   padding: 40px 20px;
-
+  visibility: visible;
+  overflow-y: scroll;
+  border-radius: 5px;
   background-color: var(--white-text-color);
-
+  outline: none;
   transform: translate(-50%, -50%) scale(1);
-
-  width: 280px;
 
   @media screen and (min-width: 768px) {
     display: flex;
