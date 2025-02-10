@@ -1,15 +1,14 @@
-import { FaYoutube } from 'react-icons/fa';
-
 import BtnList from '../MoviesList/MovieItem/BtnList';
 import MovieModalTable from './MovieModalTable';
+import TrailerBtn from './TrailerBtn';
 
-import styles from '../MoviesList/MovieItem/BtnList.module.css';
 import s from './MovieModalMarkup.module.css';
 
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const noPosterImg = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
 
 const MovieModalMarkup = ({
+  id,
   poster_path,
   title,
   genres,
@@ -48,10 +47,7 @@ const MovieModalMarkup = ({
           vote_average={vote_average}
           original_title={original_title}
         />
-        <button type="button" className={`${styles.button_modal_btn} ${s.button__trailer}`}>
-          <FaYoutube className={s.modal_movie__svg_ytb} />
-          trailer
-        </button>
+        <TrailerBtn movieId={id} />
         <h3 className={s.modal_movie__subtitle}>About</h3>
         <p className={s.modal_movie__text}>{overview}</p>
         <BtnList />
