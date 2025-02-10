@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
+    "basiclightbox": "^5.0.4",
     "clsx": "^2.1.1",
     "firebase": "^11.2.0",
     "formik": "^2.4.6",

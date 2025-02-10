@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   fetchMovieByGenres,
   fetchMovieById,
   getPopularData,
   fetchMovieSearcher,
   fetchUpcomingMovies,
+  fetchMovieVideoById,
 } from './operations';
 import customToast from '../../components/Toast/Toast';
 
@@ -13,6 +14,7 @@ const initialState = {
   items: [],
   genres: [],
   selectedMovie: {},
+  trailerKey: '',
   isLoading: false,
   error: null,
   currentPage: 1,
@@ -34,49 +36,24 @@ const moviesSlice = createSlice({
     clearSelectedMovie: state => {
       state.selectedMovie = {};
     },
+    clearTrailerKey: state => {
+      state.trailerKey = '';
+    },
   },
   extraReducers: builder => {
     builder
-      .addCase(getPopularData.pending, state => {
-        state.error = null;
-        state.isLoading = true;
-      })
       .addCase(getPopularData.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload.results;
         state.totalPages = action.payload.totalPages;
       })
-      .addCase(getPopularData.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchMovieByGenres.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
       .addCase(fetchMovieByGenres.fulfilled, (state, action) => {
         state.isLoading = false;
         state.genres = action.payload;
       })
-      .addCase(fetchMovieByGenres.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchMovieById.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
       .addCase(fetchMovieById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.selectedMovie = action.payload;
-      })
-      .addCase(fetchMovieById.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchMovieSearcher.pending, state => {
-        state.isLoading = true;
-        state.error = null;
       })
       .addCase(fetchMovieSearcher.fulfilled, (state, action) => {
         if (action.payload.length === 0) customToast('warn', 'No matches');
@@ -85,24 +62,47 @@ const moviesSlice = createSlice({
         state.items = action.payload.results;
         state.totalPages = action.payload.totalPages;
       })
-      .addCase(fetchMovieSearcher.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchUpcomingMovies.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
       .addCase(fetchUpcomingMovies.fulfilled, (state, action) => {
         state.isLoading = false;
         state.upcomingMovies = action.payload.results;
       })
-      .addCase(fetchUpcomingMovies.rejected, (state, action) => {
+      .addCase(fetchMovieVideoById.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = action.payload;
-      });
+        const trailerKey =
+          payload.results.find(video => video.name.includes('Official'))?.key || null;
+        state.trailerKey = trailerKey;
+      })
+      .addMatcher(
+        isAnyOf(
+          getPopularData.pending,
+          fetchMovieByGenres.pending,
+          fetchMovieById.pending,
+          fetchMovieSearcher.pending,
+          fetchUpcomingMovies.pending,
+          fetchMovieVideoById.pending
+        ),
+        state => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          getPopularData.rejected,
+          fetchMovieByGenres.rejected,
+          fetchMovieById.rejected,
+          fetchMovieSearcher.rejected,
+          fetchUpcomingMovies.rejected,
+          fetchMovieVideoById.rejected
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
 
-export const { setCurrentPage, setSearchQuery, clearSelectedMovie } = moviesSlice.actions;
+export const { setCurrentPage, setSearchQuery, clearSelectedMovie, clearTrailerKey } =
+  moviesSlice.actions;
 export const moviesReducer = moviesSlice.reducer;
