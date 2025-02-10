@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectGenres } from '../../../redux/movies/selectors';
+
 import MoviePoster from './MoviePoster';
 import MovieCardInfo from './MovieCardInfo';
 import MovieOverview from './MovieOverview';
-import s from './MovieItem.module.css';
 import ModalMovie from '../../Modals/ModalMovie';
+
+import { selectGenres } from '../../../redux/movies/selectors';
 import { clearSelectedMovie } from '../../../redux/movies/slice';
+
+import s from './MovieItem.module.css';
 
 const MovieItem = ({ movie }) => {
   const {

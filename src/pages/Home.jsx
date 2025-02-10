@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from '../components/Loader/Loader';
 import MoviesList from '../components/MoviesList/MoviesList';
 import Pagination from '../components/Pagination/Pagination';
+import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
+import MovieSwiper from '../components/MovieSwiper/MovieSwiper';
 
 import { fetchMovieByGenres, fetchMovieSearcher, getPopularData } from '../redux/movies/operations';
 import {
@@ -12,8 +14,6 @@ import {
   selectIsLoading,
   selectSearchQuery,
 } from '../redux/movies/selectors';
-import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
-import MovieSwiper from '../components/MovieSwiper/MovieSwiper';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const Home = () => {
   const currentPage = useSelector(selectCurrentPage);
   const error = useSelector(selectError);
   const searchQuery = useSelector(selectSearchQuery);
+  const moviesListRef = useRef(null);
 
   useEffect(() => {
     if (searchQuery.trim()) {
@@ -34,12 +35,20 @@ const Home = () => {
     dispatch(fetchMovieByGenres());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (searchQuery) {
+      moviesListRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [searchQuery]);
+
   return (
     <>
       {isLoading && <Loader />}
       {error && <p>Opps</p>}
       <MovieSwiper />
-      {<MoviesList />}
+      <div ref={moviesListRef}>
+        <MoviesList />
+      </div>
       {!isLoading && <Pagination />}
       <ScrollToTop />
     </>

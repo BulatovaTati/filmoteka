@@ -14,16 +14,18 @@ import s from './ModalMovie.module.css';
 Modal.setAppElement('#root');
 
 const ModalMovie = ({ isOpen, onClose, id }) => {
-  const movie = useSelector(selectMovie);
+  const selectedMovie = useSelector(selectMovie);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMovieById(id));
-  }, [dispatch, id]);
+    if (id && selectedMovie?.id !== id) {
+      dispatch(fetchMovieById(id));
+    }
+  }, [dispatch, id, selectedMovie]);
 
-  const backdropImage = movie.backdrop_path
-    ? `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
+  const backdropImage = selectedMovie.backdrop_path
+    ? `url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`
     : 'rgba(0, 0, 0, 0.8)';
 
   return (
@@ -41,7 +43,7 @@ const ModalMovie = ({ isOpen, onClose, id }) => {
       <button onClick={onClose} className={s.cancelBtn}>
         <MdCancel />
       </button>
-      {isLoading ? <Loader /> : <MovieModalMarkup {...movie} />}
+      {isLoading ? <Loader /> : <MovieModalMarkup {...selectedMovie} />}
     </Modal>
   );
 };
