@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as basicLightbox from 'basiclightbox';
-import 'basiclightbox/dist/basicLightbox.min.css';
 import { FaYoutube } from 'react-icons/fa';
+import 'basiclightbox/dist/basicLightbox.min.css';
 
 import { selectIsLoading, selectTrailerKey } from '../../redux/movies/selectors';
+import { clearTrailerKey } from '../../redux/movies/slice';
 import { fetchMovieVideoById } from '../../redux/movies/operations';
 
 import styles from '../MoviesList/MovieItem/BtnList.module.css';
 import s from './MovieModalMarkup.module.css';
-import { clearTrailerKey } from '../../redux/movies/slice';
 
 const TrailerBtn = ({ movieId }) => {
   const dispatch = useDispatch();
@@ -17,8 +17,10 @@ const TrailerBtn = ({ movieId }) => {
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    if (!movieId || !trailerKey) return;
-  }, [movieId, trailerKey]);
+    if (!trailerKey && !isLoading) {
+      dispatch(fetchMovieVideoById(movieId));
+    }
+  }, [dispatch, movieId, trailerKey, isLoading]);
 
   const openTrailerModal = key => {
     if (!key) return alert('No trailer available.');
@@ -37,12 +39,11 @@ const TrailerBtn = ({ movieId }) => {
 
     trailer.show();
   };
+
   const handleClick = () => {
-    if (!trailerKey) {
-      dispatch(fetchMovieVideoById(movieId));
-      return;
+    if (trailerKey) {
+      openTrailerModal(trailerKey);
     }
-    openTrailerModal(trailerKey);
   };
 
   return (
@@ -50,7 +51,6 @@ const TrailerBtn = ({ movieId }) => {
       type="button"
       className={`${styles.button_modal_btn} ${s.button__trailer}`}
       onClick={handleClick}
-      disabled={isLoading}
     >
       <FaYoutube className={s.modal_movie__svg_ytb} />
       Trailer
