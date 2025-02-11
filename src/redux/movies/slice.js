@@ -68,9 +68,10 @@ const moviesSlice = createSlice({
       })
       .addCase(fetchMovieVideoById.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        const trailerKey =
-          payload.results.find(video => video.name.includes('Official'))?.key || null;
-        state.trailerKey = trailerKey;
+        const trailerKey = payload.results.find(
+          video => video.type === 'Trailer' || video.type === 'Teaser'
+        );
+        state.trailerKey = trailerKey.key;
       })
       .addMatcher(
         isAnyOf(
