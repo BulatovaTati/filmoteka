@@ -29,7 +29,7 @@ const MovieItem = ({ movie }) => {
   const dispatch = useDispatch();
   const genres = useSelector(selectGenres);
 
-  const genreNames = genre_ids.map(id => {
+  const genreNames = genre_ids?.map(id => {
     const genre = genres.find(g => g.id === id);
     return genre ? genre.name : 'Unknown';
   });
@@ -64,7 +64,7 @@ const MovieItem = ({ movie }) => {
         />
       </div>
       <div className={s.card__item_back}>
-        <MovieOverview overview={overview} />
+        <MovieOverview movie={movie} />
       </div>
       {isModalOpen && <ModalMovie id={id} isOpen={isModalOpen} onClose={onClose} />}
     </li>

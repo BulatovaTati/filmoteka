@@ -15,6 +15,8 @@ const initialState = {
   genres: [],
   selectedMovie: {},
   trailerKey: '',
+  inWatched: [],
+  inQueue: [],
   isLoading: false,
   error: null,
   currentPage: 1,
@@ -38,6 +40,26 @@ const moviesSlice = createSlice({
     },
     clearTrailerKey: state => {
       state.trailerKey = '';
+    },
+    addToWatched: (state, action) => {
+      const movie = action.payload;
+      if (!movie || !movie.id) return;
+      if (!state.inWatched.some(item => item.id === movie.id)) {
+        state.inWatched.push(movie);
+      }
+    },
+    removeFromWatched: (state, action) => {
+      state.inWatched = state.inWatched.filter(movie => movie.id !== action.payload.id);
+    },
+    addToQueue: (state, action) => {
+      const movie = action.payload;
+      if (!movie || !movie.id) return;
+      if (!state.inQueue.some(item => item.id === movie.id)) {
+        state.inQueue.push(movie);
+      }
+    },
+    removeFromQueue: (state, action) => {
+      state.inQueue = state.inQueue.filter(movie => movie.id !== action.payload.id);
     },
   },
   extraReducers: builder => {
@@ -104,6 +126,14 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { setCurrentPage, setSearchQuery, clearSelectedMovie, clearTrailerKey } =
-  moviesSlice.actions;
+export const {
+  setCurrentPage,
+  setSearchQuery,
+  clearSelectedMovie,
+  clearTrailerKey,
+  addToWatched,
+  addToQueue,
+  removeFromWatched,
+  removeFromQueue,
+} = moviesSlice.actions;
 export const moviesReducer = moviesSlice.reducer;

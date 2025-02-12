@@ -21,6 +21,7 @@ const Home = () => {
   const currentPage = useSelector(selectCurrentPage);
   const error = useSelector(selectError);
   const searchQuery = useSelector(selectSearchQuery);
+
   const moviesListRef = useRef(null);
 
   useEffect(() => {
