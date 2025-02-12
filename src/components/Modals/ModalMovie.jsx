@@ -43,7 +43,7 @@ const ModalMovie = ({ isOpen, onClose, id }) => {
       <button onClick={onClose} className={s.cancelBtn}>
         <MdCancel />
       </button>
-      {isLoading ? <Loader /> : <MovieModalMarkup {...selectedMovie} />}
+      {isLoading ? <Loader /> : <MovieModalMarkup movie={selectedMovie} />}
     </Modal>
   );
 };

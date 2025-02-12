@@ -1,0 +1,19 @@
+.noMovies {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sorry {
+  color: #ff6b08;
+  margin-bottom: 20px;
+  font-size: 50px;
+}
+
+.str_alert {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 0.823529;
+}

@@ -5,6 +5,8 @@ export const selectUpcomingMovies = state => state.movies.upcomingMovies;
 export const selectGenres = state => state.movies.genres;
 export const selectMovie = state => state.movies.selectedMovie;
 export const selectTrailerKey = state => state.movies.trailerKey;
+export const selectInWatched = state => state.movies.inWatched?.filter(item => item !== null);
+export const selectInQueue = state => state.movies.inQueue?.filter(item => item !== null);
 export const selectTotalPages = state => state.movies.totalPages;
 export const selectCurrentPage = state => state.movies.currentPage;
 export const selectSearchQuery = state => state.movies.searchQuery;

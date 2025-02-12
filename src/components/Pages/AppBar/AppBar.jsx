@@ -1,14 +1,16 @@
 import { FiFilm } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
-
 import Container from '../../Container/Container';
 import SearchBar from '../../SearchBar/SearchBar';
+import HeaderBtns from '../Library/HeaderBtns';
 
 import s from './AppBar.module.css';
-
 const AppBar = () => {
+  const location = useLocation();
+  const isLibraryPage = location.pathname.startsWith('/library');
+
   return (
     <header className={s.header} id="home">
       <Container modClass={s.header__container}>
@@ -19,7 +21,7 @@ const AppBar = () => {
           </Link>
           <Navigation />
         </div>
-        <SearchBar />
+        {isLibraryPage ? <HeaderBtns /> : <SearchBar />}
       </Container>
     </header>
   );

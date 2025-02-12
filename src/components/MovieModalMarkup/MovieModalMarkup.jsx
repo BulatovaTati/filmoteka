@@ -7,18 +7,20 @@ import s from './MovieModalMarkup.module.css';
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const noPosterImg = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
 
-const MovieModalMarkup = ({
-  id,
-  poster_path,
-  title,
-  genres,
-  popularity,
-  vote_count,
-  vote_average,
-  original_title,
-  overview,
-  production_companies,
-}) => {
+const MovieModalMarkup = ({ movie }) => {
+  const {
+    id,
+    poster_path,
+    title,
+    genres,
+    popularity,
+    vote_count,
+    vote_average,
+    original_title,
+    overview,
+    production_companies,
+  } = movie;
+
   const logo =
     Array.isArray(production_companies) && production_companies.length > 0
       ? production_companies.find(log => log.logo_path)?.logo_path
@@ -50,7 +52,7 @@ const MovieModalMarkup = ({
         <TrailerBtn movieId={id} />
         <h3 className={s.modal_movie__subtitle}>About</h3>
         <p className={s.modal_movie__text}>{overview}</p>
-        <BtnList />
+        <BtnList movie={movie} />
         {logoUrl && <img className={s.production_logo} src={logoUrl} alt="Production logo" />}
       </div>
     </>

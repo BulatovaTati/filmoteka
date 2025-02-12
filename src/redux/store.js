@@ -19,12 +19,30 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const moviesPersistConfig = {
+  key: 'movies',
+  storage,
+  blacklist: [
+    'upcomingMovies',
+    'items',
+    'genres',
+    'selectedMovie',
+    'trailerKey',
+    'isLoading',
+    'error',
+    'currentPage',
+    'totalPages',
+    'searchQuery',
+  ],
+};
+
 const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
+const moviesPersistedReducer = persistReducer(moviesPersistConfig, moviesReducer);
 
 export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
-    movies: moviesReducer,
+    movies: moviesPersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
