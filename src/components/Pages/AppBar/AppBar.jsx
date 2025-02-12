@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FiFilm } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import SearchBar from '../../SearchBar/SearchBar';
 import HeaderBtns from '../Library/HeaderBtns';
 
 import s from './AppBar.module.css';
+
 const AppBar = () => {
   const location = useLocation();
   const isLibraryPage = location.pathname.startsWith('/library');
