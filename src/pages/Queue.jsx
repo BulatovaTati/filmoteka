@@ -3,6 +3,7 @@ import { selectInQueue } from '../redux/movies/selectors';
 import Section from '../components/Section/Section';
 import Container from '../components/Container/Container';
 import NoMovies from '../components/Pages/Library/NoMovies';
+import MoviesLibraryList from '../components/Pages/Library/MoviesLibraryList';
 
 const Queue = () => {
   const queueMovies = useSelector(selectInQueue);
@@ -11,20 +12,7 @@ const Queue = () => {
     return <NoMovies />;
   }
 
-  return (
-    <Section>
-      <Container>
-        <ul>
-          {queueMovies?.map(movie => (
-            <li key={movie.id}>
-              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-              <h3>{movie.title}</h3>
-            </li>
-          ))}
-        </ul>
-      </Container>
-    </Section>
-  );
+  return <MoviesLibraryList queueMovies={queueMovies} />;
 };
 
 export default Queue;
