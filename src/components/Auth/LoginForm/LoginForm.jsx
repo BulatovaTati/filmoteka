@@ -9,6 +9,7 @@ import { validationSchemaLoginForm } from '../../validationsForm';
 import { logIn } from '../../../redux/auth/operations';
 
 import s from './LoginForm.module.css';
+import Section from '../../Section/Section';
 
 const initialValues = { email: '', password: '' };
 
@@ -21,7 +22,7 @@ const LoginForm = () => {
   };
 
   return (
-    <section className={s.login_section}>
+    <Section>
       <Container>
         <p className={s.modal_login__title_signIn}>Sing in</p>
         <Formik
@@ -61,7 +62,7 @@ const LoginForm = () => {
           )}
         </Formik>
       </Container>
-    </section>
+    </Section>
   );
 };
 

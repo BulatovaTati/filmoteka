@@ -17,11 +17,13 @@ const Navigation = () => {
           HOME
         </NavLink>
       </li>
-      <li className={s.nav__item}>
-        <NavLink to="/library" className={buildLinkClass}>
-          MY LIBRARY
-        </NavLink>
-      </li>
+      {isLoggedIn && (
+        <li className={s.nav__item}>
+          <NavLink to="/library" className={buildLinkClass}>
+            MY LIBRARY
+          </NavLink>
+        </li>
+      )}
       <li className={s.nav__item}>{isLoggedIn ? <UserMenu /> : <AuthNav />} </li>
     </ul>
   );

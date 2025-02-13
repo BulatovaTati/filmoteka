@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { FiFilm } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 
