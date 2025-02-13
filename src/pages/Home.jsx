@@ -12,6 +12,7 @@ import {
   selectCurrentPage,
   selectError,
   selectIsLoading,
+  selectMemoizedMovies,
   selectSearchQuery,
 } from '../redux/movies/selectors';
 
@@ -21,7 +22,7 @@ const Home = () => {
   const currentPage = useSelector(selectCurrentPage);
   const error = useSelector(selectError);
   const searchQuery = useSelector(selectSearchQuery);
-
+  const movies = useSelector(selectMemoizedMovies);
   const moviesListRef = useRef(null);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const Home = () => {
       <div ref={moviesListRef}>
         <MoviesList />
       </div>
-      {!isLoading && <Pagination />}
+      {!isLoading && movies.length !== 0 && <Pagination />}
       <ScrollToTop />
     </>
   );
