@@ -14,9 +14,17 @@ import s from './ModalMovie.module.css';
 Modal.setAppElement('#root');
 
 const ModalMovie = ({ isOpen, onClose, id }) => {
+  const dispatch = useDispatch();
   const selectedMovie = useSelector(selectMovie);
   const isLoading = useSelector(selectIsLoading);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   useEffect(() => {
     if (id && selectedMovie?.id !== id) {

@@ -8,16 +8,20 @@ import { Keyboard, Autoplay, Pagination } from 'swiper/modules';
 import Loader from '../Loader/Loader';
 import Container from '../Container/Container';
 import Section from '../Section/Section';
+import ModalMovie from '../Modals/ModalMovie';
 
 import { fetchUpcomingMovies } from '../../redux/movies/operations';
-import { selectError, selectIsLoading, selectUpcomingMovies } from '../../redux/movies/selectors';
+import {
+  selectError,
+  selectIsLoading,
+  selectMemoizedUpcomingMovies,
+} from '../../redux/movies/selectors';
+import { clearSelectedMovie } from '../../redux/movies/slice';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import s from './MovieSwiper.module.css';
-import { clearSelectedMovie } from '../../redux/movies/slice';
-import ModalMovie from '../Modals/ModalMovie';
 
 const MovieSwiper = () => {
   SwiperCore.use([Keyboard, Autoplay, Pagination]);
@@ -25,7 +29,7 @@ const MovieSwiper = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentMovieId, setCurrentMovieId] = useState(null);
-  const upcomingMovies = useSelector(selectUpcomingMovies);
+  const upcomingMovies = useSelector(selectMemoizedUpcomingMovies);
   const loading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 

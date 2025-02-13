@@ -3,10 +3,10 @@ import Container from '../Container/Container';
 import Section from '../Section/Section';
 import MovieItem from './MovieItem/MovieItem';
 import s from './MoviesList.module.css';
-import { selectMovies } from '../../redux/movies/selectors';
+import { selectMemoizedMovies } from '../../redux/movies/selectors';
 
 const MoviesList = () => {
-  const movies = useSelector(selectMovies);
+  const movies = useSelector(selectMemoizedMovies);
 
   return (
     <Section>
