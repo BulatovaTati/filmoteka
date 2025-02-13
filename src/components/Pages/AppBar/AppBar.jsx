@@ -1,5 +1,6 @@
 import { FiFilm } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
 import Navigation from '../Navigation/Navigation';
 import Container from '../../Container/Container';
@@ -13,7 +14,7 @@ const AppBar = () => {
   const isLibraryPage = location.pathname.startsWith('/library');
 
   return (
-    <header className={s.header} id="home">
+    <header className={clsx(s.header, { [s.header_library]: isLibraryPage })}>
       <Container modClass={s.header__container}>
         <div className={s.header__wrapper}>
           <Link className={s.logo} aria-label="Filmoteka logo" to="/">
