@@ -87,6 +87,7 @@ const moviesSlice = createSlice({
       .addCase(fetchUpcomingMovies.fulfilled, (state, action) => {
         state.isLoading = false;
         state.upcomingMovies = action.payload.results;
+        state.searchQuery = '';
       })
       .addCase(fetchMovieVideoById.fulfilled, (state, { payload }) => {
         state.isLoading = false;

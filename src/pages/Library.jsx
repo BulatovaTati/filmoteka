@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import Section from '../components/Section/Section';
 import Container from '../components/Container/Container';

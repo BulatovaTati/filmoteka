@@ -6,28 +6,19 @@ import MovieCardInfo from './MovieCardInfo';
 import MovieOverview from './MovieOverview';
 import ModalMovie from '../../Modals/ModalMovie';
 
-import { selectGenres } from '../../../redux/movies/selectors';
+import { selectMemoizedGenres } from '../../../redux/movies/selectors';
 import { clearSelectedMovie } from '../../../redux/movies/slice';
 
 import s from './MovieItem.module.css';
 
 const MovieItem = ({ movie }) => {
-  const {
-    id,
-    poster_path,
-    title,
-    genre_ids,
-    release_date,
-    first_air_date,
-    vote_average,
-    name,
-    overview,
-  } = movie;
+  const { id, poster_path, title, genre_ids, release_date, first_air_date, vote_average, name } =
+    movie;
 
   const [isFlipped, setIsFlipped] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const genres = useSelector(selectGenres);
+  const genres = useSelector(selectMemoizedGenres);
 
   const genreNames = genre_ids?.map(id => {
     const genre = genres.find(g => g.id === id);
