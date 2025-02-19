@@ -6,12 +6,10 @@
 
 .nav__item {
   font-size: 12px;
-
   cursor: pointer;
 
   &:not(:last-child) {
     margin-right: 20px;
-
     @media screen and (min-width: 768px) {
       margin-right: 40px;
     }
@@ -19,10 +17,10 @@
 }
 
 .nav__link {
-  color: var(--white-text-color);
   max-width: 100%;
   text-decoration: none;
   text-transform: uppercase;
+  color: var(--white-text-color);
   transition: color var(--time) var(--cubic);
 
   &:hover,

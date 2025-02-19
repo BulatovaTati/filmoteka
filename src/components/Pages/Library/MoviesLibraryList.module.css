@@ -1,7 +1,6 @@
 .movies_list {
   display: flex;
   flex-wrap: wrap;
-
   gap: 20px;
 
   @media screen and (min-width: 768px) {
@@ -29,7 +28,6 @@
 
 .movies_image {
   width: 100%;
-
   margin-bottom: 20px;
   border-radius: 8px;
   object-fit: cover;
@@ -39,9 +37,9 @@
 
 .movies_title {
   display: block;
+  font-size: 16px;
   text-align: center;
   color: #000;
-  font-size: 16px;
   border: 2px dotted rgba(255, 107, 1, 0.251);
   text-transform: uppercase;
 }

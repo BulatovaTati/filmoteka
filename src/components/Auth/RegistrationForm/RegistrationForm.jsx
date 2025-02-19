@@ -27,49 +27,47 @@ const RegistrationForm = () => {
   return (
     <Section>
       <Container>
-        <div>
-          <p className={s.modal_registration__title_signUp}>Registration</p>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchemaRegistrationForm}
-            onSubmit={handleSubmit}
-          >
-            {({ isSubmitting }) => (
-              <Form className={s.modal_registration}>
-                <div className={s.modal_registration__label}>
-                  <Field
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    className={s.modal_registration__input}
-                  />
-                  <FormErrorMessage name="name" />
-                </div>
-                <div className={s.modal_registration__label}>
-                  <Field
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className={s.modal_registration__input}
-                  />
-                  <FormErrorMessage name="email" />
-                </div>
-                <div className={s.modal_registration__label}>
-                  <Field
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    className={s.modal_registration__input}
-                  />
-                  <FormErrorMessage name="password" />
-                </div>
-                <button type="submit" disabled={isSubmitting} className={s.button_modal_btn}>
-                  Register
-                </button>
-              </Form>
-            )}
-          </Formik>
-        </div>
+        <p className={s.modal_registration__title_signUp}>Registration</p>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchemaRegistrationForm}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form className={s.modal_registration}>
+              <div className={s.modal_registration__label}>
+                <Field
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  className={s.modal_registration__input}
+                />
+                <FormErrorMessage name="name" />
+              </div>
+              <div className={s.modal_registration__label}>
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className={s.modal_registration__input}
+                />
+                <FormErrorMessage name="email" />
+              </div>
+              <div className={s.modal_registration__label}>
+                <Field
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className={s.modal_registration__input}
+                />
+                <FormErrorMessage name="password" />
+              </div>
+              <button type="submit" disabled={isSubmitting} className={s.button_modal_btn}>
+                Register
+              </button>
+            </Form>
+          )}
+        </Formik>
       </Container>
     </Section>
   );

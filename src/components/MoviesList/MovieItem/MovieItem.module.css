@@ -63,37 +63,48 @@
     margin-bottom: 12px;
   }
 }
+
 .card__img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
+  transition: box-shadow var(--time) var(--cubic);
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 10px 3px rgb(255, 107, 1);
+  }
 }
 
 .card__info {
+  border: 2px dotted rgba(255, 107, 1, 0.251);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .card__decr {
   display: flex;
-  gap: 5px;
   align-items: center;
+  gap: 5px;
 
   @media screen and (min-width: 1280px) {
-    font-size: 17px;
+    font-size: 15px;
+    line-height: 1.33;
   }
 }
 
 .card__title {
   margin-bottom: 5px;
-  /* @include lh(16px, 12px, 12px); */
+  font-size: 12px;
+  line-height: 1.33;
   color: var(--main-text-color);
   text-transform: uppercase;
 
   @media screen and (min-width: 1280px) {
-    /* @include lh(20px, 14px, 14px); */
+    font-size: 14px;
+    line-height: 1.42;
   }
 }
 
@@ -105,16 +116,16 @@
 .card__rating {
   width: 36px;
   height: 16px;
-  /* @include lh(14px, 12px, 12px); */
+  font-size: 12px;
+  text-align: center;
   color: var(--white-text-color);
   background-color: var(--accent-bg-color);
   border-radius: 5px;
-  text-align: center;
 
   @media screen and (min-width: 1280px) {
     width: 44px;
     height: 20px;
-    /* @include lh(14px, 15px, 15px); */
+    font-size: 15px;
   }
 }
 
@@ -126,8 +137,14 @@
 
 .read_more {
   padding: 5px 10px;
-  background-color: transparent;
-  border: none;
   margin-left: auto;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
+
+  transition: color var(--time) var(--cubic);
+  &:hover,
+  &:focus {
+    color: var(--accent-bg-color);
+  }
 }

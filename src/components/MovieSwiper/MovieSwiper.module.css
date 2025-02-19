@@ -1,10 +1,10 @@
 .upcoming__title {
   margin-bottom: 30px;
   display: block;
-  text-align: center;
-  color: #000;
   font-size: 16px;
+  text-align: center;
   text-transform: uppercase;
+  color: #000;
 }
 
 .upcoming {
@@ -29,10 +29,9 @@
   justify-content: space-between;
   gap: 16px;
   padding: 12px;
-  border: 2px dotted rgba(255, 107, 1, 0.251);
-
-  border-radius: 8px;
   margin-bottom: 55px;
+  border-radius: 8px;
+  border: 2px dotted rgba(255, 107, 1, 0.251);
 
   @media screen and (min-width: 768px) {
     height: 430px;
@@ -43,14 +42,20 @@
   }
 }
 
+.swiper_title {
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
 :global(.swiper-pagination-bullet) {
+  margin: 0 6px;
   width: 12px;
   height: 12px;
   background-color: #ccc;
-  opacity: 1;
-  margin: 0 6px;
   border-radius: 50%;
-  transition: background-color 0.3s ease;
+  opacity: 1;
+  transition: background-color var(--time) var(--cubic);
 
   @media screen and (min-width: 768px) {
     width: 16px;

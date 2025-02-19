@@ -16,6 +16,7 @@ const customToast = (type, message) => {
       border: `1px solid ${border}`,
       padding: '16px',
       color,
+      fontSize: '14px',
     },
   });
 };
