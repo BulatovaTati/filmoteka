@@ -84,7 +84,7 @@ const MovieSwiper = () => {
                 className={s.upcoming___image}
                 onClick={() => openModal(movie.id)}
               />
-              <h3>{movie.title}</h3>
+              <h3 className={s.swiper_title}>{movie.title}</h3>
             </SwiperSlide>
           ))}
         </Swiper>

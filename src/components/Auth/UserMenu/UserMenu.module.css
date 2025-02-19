@@ -1,10 +1,9 @@
 .logOut {
-  background-color: transparent;
-  border: none;
   text-transform: uppercase;
   color: var(--white-text-color);
+  background-color: transparent;
+  border: none;
   cursor: pointer;
-
   transition: color var(--time) var(--cubic);
 
   &:hover,

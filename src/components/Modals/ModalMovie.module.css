@@ -19,12 +19,12 @@
   width: 280px;
   max-height: 96%;
   padding: 40px 20px;
-  visibility: visible;
-  overflow-y: scroll;
   border-radius: 5px;
   background-color: var(--white-text-color);
   outline: none;
   transform: translate(-50%, -50%) scale(1);
+  overflow-y: scroll;
+  visibility: visible;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -48,15 +48,15 @@
   top: 10px;
   right: 10px;
   display: flex;
-  padding: 5px;
   align-items: center;
   justify-content: center;
+  padding: 5px;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color var(--time) var(--cubic);
-  background-color: #f44336;
   color: var(--white-text-color);
+  background-color: #f44336;
+  transition: background-color var(--time) var(--cubic);
+  cursor: pointer;
 
   &:hover {
     background-color: var(--accent-text-color);

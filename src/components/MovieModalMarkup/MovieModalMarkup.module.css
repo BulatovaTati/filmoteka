@@ -1,7 +1,7 @@
 .modal_movie__thumb {
-  margin-bottom: 21px;
-  height: 357px;
   position: relative;
+  height: 357px;
+  margin-bottom: 21px;
   border-radius: 5px;
   overflow: hidden;
 
@@ -36,21 +36,22 @@
 
 .modal_movie__title {
   margin-bottom: 19px;
-
-  /* @include lh(23px, 20px, 20px); */
   font-weight: 500;
+  font-size: 20px;
+  line-height: 1.15;
   text-transform: uppercase;
 
   @media screen and (min-width: 1280px) {
-    /* @include lh(35px, 30px, 30px); */
+    font-size: 30px;
+    line-height: 1.16;
   }
 }
 
 .modal_movie__table {
   width: 100%;
   margin-bottom: 20px;
-
-  /* @include lh(16px, 12px, 12px); */
+  font-size: 12px;
+  line-height: 1.33;
 }
 
 .modal_movie__cell {
@@ -68,36 +69,34 @@
 
 .modal_movie__span {
   display: inline-block;
-
   width: 36px;
   border-radius: 5px;
-
   text-align: center;
 }
 
 .modal_movie__span_vote {
   margin-right: 5px;
-  background-color: var(--accent-bg-color);
   color: var(--white-text-color);
+  background-color: var(--accent-bg-color);
 }
 
 .modal_movie__span_votes {
   margin-left: 5px;
-  background-color: var(--modal-light-gray);
   color: #000;
+  background-color: var(--modal-light-gray);
 }
 
 .modal_movie__subtitle {
   margin-bottom: 8px;
-  /* 
-  @include lh(16px, 12px, 12px); */
+  font-size: 12px;
+  line-height: 1.33;
   text-transform: uppercase;
 }
 
 .modal_movie__text {
   margin-bottom: 20px;
-
-  /* @include lh(20px, 12px, 12px); */
+  font-size: 12px;
+  line-height: 1.66;
 
   @media screen and (min-width: 768px) and (max-width: 1279.99px) {
     margin-bottom: 40px;
@@ -107,15 +106,18 @@
 .button__trailer {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  text-align: center;
-  border: 1px solid #000;
+  gap: 14px;
   margin-bottom: 20px;
+
+  border: 1px solid #000;
   transition: color var(--time) var(--cubic);
 
   &:hover .modal_movie__svg_ytb,
   &:focus .modal_movie__svg_ytb {
     color: white;
+  }
+  @media screen and (min-width: 768px) {
+    gap: 24px;
   }
 }
 
@@ -127,7 +129,7 @@
 
 .production_logo {
   display: block;
+  width: 200px;
   margin: 0 auto;
   margin-top: 25px;
-  width: 200px;
 }

@@ -1,10 +1,9 @@
 .cards__list {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
   row-gap: 20px;
-
-  justify-content: center;
 
   @media screen and (min-width: 768px) {
     row-gap: 32px;
@@ -13,7 +12,6 @@
   }
 
   @media screen and (min-width: 1280px) {
-    row-gap: 32px;
     column-gap: 15px;
   }
 }
