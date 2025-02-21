@@ -10,16 +10,17 @@
   align-items: center;
   width: 130px;
   height: 44px;
+  font-size: 12px;
+  line-height: 1.33;
   text-transform: uppercase;
-  color: #fff;
-
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid #fff;
+  color: var(--white-text-color);
+  background-color: transparent;
+  border: 1px solid var(--white-text-color);
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button_active {
-  background-color: #ff6b01;
+  background-color: var(--my-library-current-bcg-button);
   border: none;
 }

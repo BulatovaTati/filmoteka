@@ -16,13 +16,11 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  color: #000;
 
   background-color: transparent;
   border-radius: 5px;
   text-wrap: nowrap;
   transition: 350ms;
-
   cursor: pointer;
 
   & a {
@@ -38,7 +36,7 @@
 
 .pagination_is_selected {
   color: var(--white-text-color);
-  background-color: var(--accent-text-color);
+  background-color: var(--accent-bg-color);
 }
 
 .pagination_btn_prev,

@@ -45,7 +45,7 @@
 }
 
 .footer__icon {
-  color: var(--accent-text-color);
+  color: var(--accent-bg-color);
 }
 
 .footer__link {

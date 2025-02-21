@@ -1,10 +1,9 @@
 .upcoming__title {
   margin-bottom: 30px;
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
   text-transform: uppercase;
-  color: #000;
 }
 
 .upcoming {
@@ -18,8 +17,12 @@
   height: 375px;
   border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 0 10px 3px rgb(255, 107, 1);
   cursor: pointer;
+  transition: box-shadow var(--time) var(--cubic);
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 10px 3px rgb(255, 107, 1);
+  }
 }
 
 :global(.swiper-slide) {
@@ -29,23 +32,24 @@
   justify-content: space-between;
   gap: 16px;
   padding: 12px;
-  margin-bottom: 55px;
+  margin-bottom: 70px;
   border-radius: 8px;
-  border: 2px dotted rgba(255, 107, 1, 0.251);
+  border: 2px dotted var(--border-color);
+  height: 450px;
 
   @media screen and (min-width: 768px) {
-    height: 430px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    height: 475px;
+    height: 465px;
   }
 }
 
 .swiper_title {
+  width: 100%;
+  padding: 5px;
   font-size: 12px;
   line-height: 1.33;
+  text-align: center;
   text-transform: uppercase;
+  border: 2px dotted var(--border-color);
 }
 
 :global(.swiper-pagination-bullet) {

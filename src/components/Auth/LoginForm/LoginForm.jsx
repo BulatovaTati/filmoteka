@@ -55,7 +55,10 @@ const LoginForm = () => {
               </button>
               <div className={s.signUp_now}>
                 <p>
-                  Not a member? <Link to="/register">Sign up Now</Link>
+                  Not a member?{' '}
+                  <Link to="/register" className={s.signUp_now__link}>
+                    Sign up Now
+                  </Link>
                 </p>
               </div>
             </Form>

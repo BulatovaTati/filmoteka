@@ -5,7 +5,7 @@ import TrailerBtn from './TrailerBtn';
 import s from './MovieModalMarkup.module.css';
 
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
-const noPosterImg = 'https://sd.keepcalms.com/i/sorry-no-picture-available-2.png';
+const noPosterImg = 'https://placehold.co/440x660';
 
 const MovieModalMarkup = ({ movie }) => {
   const {

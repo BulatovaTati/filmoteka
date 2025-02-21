@@ -1,5 +1,5 @@
 .formError {
   position: absolute;
   bottom: -19px;
-  color: red;
+  color: var(--current-page);
 }

@@ -9,8 +9,6 @@
   gap: 25px;
   width: 100%;
   margin: 0 auto;
-
-  background-color: var(--white-text-color);
   border-radius: 15px;
 
   @media screen and (min-width: 768px) {
@@ -42,21 +40,18 @@
 
 .modal_login__input {
   width: 100%;
-
   padding-top: 11px;
   padding-bottom: 11px;
   padding-left: 30px;
-
-  border: 1px solid rgba(33, 33, 33, 0.2);
-  box-sizing: border-box;
+  border: 1px solid rgba(33, 33, 33, 0.3);
   border-radius: 4px;
   outline: none;
   transition: border-color var(--time) var(--cubic);
-}
 
-.modal_login__input:hover,
-.modal_login__input:focus {
-  border-color: var(--accent-text-color);
+  &:hover,
+  &:focus {
+    border-color: var(--accent-text-color);
+  }
 }
 
 .signUp_now,
@@ -78,7 +73,9 @@
   text-transform: uppercase;
 
   border-radius: 5px;
-  border: 1px solid #000;
+  outline: none;
+  color: var(--main-text-color);
+  border: 1px solid var(--main-text-color);
   background-color: transparent;
   transition: color var(--time) var(--cubic), background-color var(--time) var(--cubic),
     border-color var(--time) var(--cubic);
@@ -95,19 +92,18 @@
   &:hover {
     color: var(--white-text-color);
     border-color: transparent;
-    background-color: var(--accent-text-color);
+    background-color: var(--accent-bg-color);
   }
 }
 
 .signUp_now__link {
   margin-left: 10px;
-  letter-spacing: 0.03em;
-  color: var(--accent-text-color);
+  color: currentColor;
   cursor: pointer;
-  transition: transform var(--time) var(--cubic);
+  transition: color var(--time) var(--cubic);
 
   &:focus,
   &:hover {
-    transform: scale(1.15);
+    color: var(--accent-bg-color);
   }
 }

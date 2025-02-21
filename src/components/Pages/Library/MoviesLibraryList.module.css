@@ -31,15 +31,14 @@
   margin-bottom: 20px;
   border-radius: 8px;
   object-fit: cover;
-  border: 2px dotted rgba(255, 107, 1, 0.251);
   cursor: pointer;
 }
 
 .movies_title {
   display: block;
+  padding: 5px;
   font-size: 16px;
   text-align: center;
-  color: #000;
-  border: 2px dotted rgba(255, 107, 1, 0.251);
+  border: 2px dotted var(--border-color);
   text-transform: uppercase;
 }
