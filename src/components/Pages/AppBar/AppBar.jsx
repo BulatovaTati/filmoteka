@@ -6,12 +6,20 @@ import Navigation from '../Navigation/Navigation';
 import Container from '../../Container/Container';
 import SearchBar from '../../SearchBar/SearchBar';
 import HeaderBtns from '../Library/HeaderBtns';
+import ThemeSwitcher from '../../Theme/ThemeSwitcher';
 
 import s from './AppBar.module.css';
+import { useTheme } from '../../Theme/ThemeProvider';
+import { useEffect } from 'react';
 
 const AppBar = () => {
   const location = useLocation();
+  const { isDarkMode } = useTheme();
   const isLibraryPage = location.pathname.startsWith('/library');
+
+  useEffect(() => {
+    document.body.className = isDarkMode ? 'dark' : 'light';
+  }, [isDarkMode]);
 
   return (
     <header className={clsx(s.header, { [s.header_library]: isLibraryPage })}>
@@ -24,6 +32,7 @@ const AppBar = () => {
           <Navigation />
         </div>
         {isLibraryPage ? <HeaderBtns /> : <SearchBar />}
+        <ThemeSwitcher />
       </Container>
     </header>
   );

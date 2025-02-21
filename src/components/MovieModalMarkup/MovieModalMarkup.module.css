@@ -31,7 +31,6 @@
 .card__img {
   display: block;
   object-fit: cover;
-  border-radius: 5px;
 }
 
 .modal_movie__title {
@@ -59,10 +58,6 @@
   padding-bottom: 5px;
 }
 
-.modal_movie__cell_gray_text {
-  color: var(--modal-items);
-}
-
 .modal_movie__cell_last_row {
   padding-bottom: 0;
 }
@@ -81,9 +76,8 @@
 }
 
 .modal_movie__span_votes {
-  margin-left: 5px;
-  color: #000;
-  background-color: var(--modal-light-gray);
+  color: var(--white-text-color);
+  background-color: var(--accent-bcg-votes);
 }
 
 .modal_movie__subtitle {
@@ -108,14 +102,13 @@
   align-items: center;
   gap: 14px;
   margin-bottom: 20px;
-
-  border: 1px solid #000;
   transition: color var(--time) var(--cubic);
 
   &:hover .modal_movie__svg_ytb,
   &:focus .modal_movie__svg_ytb {
-    color: white;
+    color: var(--white-text-color);
   }
+
   @media screen and (min-width: 768px) {
     gap: 24px;
   }
@@ -124,7 +117,7 @@
 .modal_movie__svg_ytb {
   width: 25px;
   height: 25px;
-  color: red;
+  color: var(--current-page);
 }
 
 .production_logo {

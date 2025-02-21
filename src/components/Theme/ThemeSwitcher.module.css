@@ -1,0 +1,14 @@
+.btn_icons {
+  position: absolute;
+  top: 185px;
+  right: 20vw;
+  color: var(--white-text-color);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color var(--time) var(--cubic);
+  &:hover,
+  &:focus {
+    color: var(--accent-bg-color);
+  }
+}

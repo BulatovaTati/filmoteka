@@ -3,9 +3,8 @@ body {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
-  background-color: var(--white-text-color);
-  color: var(--main-text-color);
 
+  transition: background-color var(--time) ease-in;
   @media screen and (min-width: 1280px) {
     font-size: 20px;
     line-height: 1.2;
@@ -18,4 +17,14 @@ body {
 
 main {
   flex: 1;
+}
+
+body.light {
+  color: var(--main-text-color);
+  background-color: var(--white-text-color);
+}
+
+body.dark {
+  color: var(--white-text-color);
+  background-color: var(--body-bcg);
 }

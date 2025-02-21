@@ -1,21 +1,32 @@
 :root {
-  --main-text-color: #000000;
-  --accent-text-color: #ff6b08;
-  --white-text-color: #ffffff;
-  --footer-text-color: #545454;
   --current-page: #ff001b;
+  --white-text-color: #ffffff;
   --my-library-current-bcg-button: #ff6b02;
-
-  --body-bcg: #e5e5e5;
-  --modal-overlay: rgba(0; 0; 0; 0.56);
-  --modal-items: #8c8c8c;
-
-  --pagination-arrow: #f7f7f7;
-  --footer-bcg: #f7f7f7;
-
-  --modal-light-gray: #f7f7f7;
+  --accent-bcg-votes: #8c8c8c;
   --accent-bg-color: #ff6b01;
-
+  --overlay: rgba(0, 0, 0, 0.56);
   --cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --time: 300ms;
+}
+
+body.light {
+  --main-text-color: #000000;
+  --accent-text-color: #ff6b08;
+  --body-bcg: #e5e5e5;
+  --footer-bcg: #f7f7f7;
+  --footer-text-color: #545454;
+  --pagination-arrow: #f7f7f7;
+  --modal-bcg: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(255, 107, 1, 0.251);
+}
+
+body.dark {
+  --main-text-color: #ffffff;
+  --accent-text-color: #ffffff;
+  --body-bcg: rgba(0, 0, 0, 0.56);
+  --footer-bcg: #ff001b;
+  --footer-text-color: #ffffff;
+  --pagination-arrow: #000000;
+  --modal-bcg: rgba(140, 140, 140, 0.6);
+  --border-color: rgba(255, 107, 1, 0.8);
 }
