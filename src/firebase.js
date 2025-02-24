@@ -1,10 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
-const REACT_APP_API_KEY = import.meta.env.VITE_API_KEY;
-
 const firebaseConfig = {
-  apiKey: REACT_APP_API_KEY,
+  apiKey: 'AIzaSyCemdimhSMBD1NGzKdmvslO6rcHKjFKpB8',
   authDomain: 'filmoteka-fe44d.firebaseapp.com',
   projectId: 'filmoteka-fe44d',
   storageBucket: 'filmoteka-fe44d.appspot.com',
