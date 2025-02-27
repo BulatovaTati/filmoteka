@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCemdimhSMBD1NGzKdmvslO6rcHKjFKpB8',
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: 'filmoteka-fe44d.firebaseapp.com',
   projectId: 'filmoteka-fe44d',
   storageBucket: 'filmoteka-fe44d.appspot.com',
